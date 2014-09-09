@@ -1,0 +1,13 @@
+#CAT;#EX1#;Lexicologie/Tableau de distribution
+#CLOZE;TXT;SAC;MC
+#CLOZE_EX;MC;MC
+#ENTETE;Donnez la base et la construction correspondant au lexèmes
+#ENTETE;
+#QUESTION;Le lexème #1# a pour base #2#
+#QUESTION;il correspond à la construction #3#
+#QUESTION;
+#FIN_EX;Quel est le point commun entre ces deux constructions ? #EX2#
+#FIN_EX;Quel est la différence entre ces deux constructions ? #EX3#
+#EX;Dérivés en -ier;la phonologie;la sémantique
+POMMIER;POMME;arbre de BASE
+POMPIER;POMPE;activité en rapport avec BASE
