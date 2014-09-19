@@ -24,9 +24,12 @@ class ClozeExercice:
     def __init__(self,titre):
         self.titre=titre
         self.elements=[]
+        self.exercice=[]
     
-    def addElement(self,element):
+    def addElement(self,element,consigne):
         self.elements.append(element)
+        for ligne in consigne.getConsigne(*element):
+            self.exercice.append(ligne)
 
 class ClozeConsigne:
     '''
