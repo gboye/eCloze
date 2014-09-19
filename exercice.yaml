@@ -1,0 +1,29 @@
+Catégorie: Morphologie/Sens
+Global:
+    début: ""
+    fin: ""
+Boucle: 
+    Cloze: [TXT,SAC,MC]
+    début: ""
+    contenu: 
+        - "Donnez la base et la construction correspondant au lexème #1#"
+        - "Base : #2#, Construction : #3#"
+    fin: ""
+Conclusion:
+    Cloze: [MC,MC]
+    début: ""
+    contenu:
+        - "Quel est le point commun entre ces deux constructions ? #1#"
+        - "Quelle est la différence entre ces deux constructions ? #2#"
+    fin: ""
+Données:
+    - Dérivés en -ier:
+        boucle:
+            - [POMMIER,POMME,arbre de BASE]
+            - [POMPIER,POMPE,activité en rapport avec BASE]
+        conclusion: [la phonologie,la sémantique]
+    - Dérivés en -ier:
+        boucle:
+            - [POIRIER,POIRE,arbre de BASE]
+            - [POISSONIER,POISSON,activité en rapport avec BASE]
+        conclusion: [la phonologie,la sémantique]
