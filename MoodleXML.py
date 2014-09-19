@@ -17,6 +17,56 @@ def makeChamps(chaine,champs):
             result+=chunk
     return result
 
+class XMLClozes:
+    '''
+    Conteneur pour une série d'exercices d'une même catégorie
+    '''
+    def __init__(self,category):
+        self.category=category
+        self.exercices=[]
+        self.boucles={}
+        self.conclusions={}
+    
+    def addExercice(self,exercice):
+        self.exercices.append(exercice)
+        for element in exercice.elements:
+          boucles=element[0]
+          conclusion=element[1]
+          for boucle in boucles:
+            for index, valeur in enumerate(boucle):
+              if not index in self.boucles:
+                self.boucles[index]=set()
+              self.boucles[index].add(valeur)
+          for index, valeur in enumerate(conclusion):  
+            if not index in self.conclusions:
+              self.conclusions[index]=set()
+            self.conclusions[index].add(valeur)
+    
+    def getClozes(self):
+        def makeExerciceStructure(exercice):
+            exerciceStructure=[ 
+                u'<question type="cloze">',
+                    u'<name><text>%s</text></name>'%exercice.titre,
+                    u'<questiontext><text><![CDATA[%s]]></text></questiontext>'%"\n".join(exercice.exercice),
+                    u'<generalfeedback><text>Bien reçu.</text></generalfeedback>',
+                    u'<shuffleanswers>1</shuffleanswers>',
+                u'</question>'
+                ]
+            return u"\n".join(exerciceStructure)
+                
+        categoryStructure=[u'<question type="category">',
+                            u'<category>',
+                                u'<text>',
+                                    self.category,
+                                u'</text>',
+                            u'</category>',
+                        u'</question>'
+                        ]
+        result=u"\n".join(categoryStructure)
+        for exercice in self.exercices:
+          result+=makeExerciceStructure(exercice)
+        return result
+
 class ClozeExercice:
     '''
     Conteneur pour les éléments d'un exercice Cloze
@@ -90,86 +140,6 @@ class ClozeConsigne:
         return result
 
 
-class MoodleClozes:
-    '''
-    Conteneur pour une série d'exercices d'une même catégorie
-    '''
-    def __init__(self,category):
-        self.category=category
-        self.exercicesChamps=[]
-        self.consigne=[]
-        self.exercices=[]
-        self.Clozes=[]
-        self.titre=""
-        self.choix={}
-    
-    def addTitre(self,titre):
-        self.titre=titre
-
-    def addTypes(self,exercicesChamps):
-        self.exercicesChamps=exercicesChamps
-
-    def addConsigne(self,consignes):
-        if isinstance(consignes,list):
-            for consigne in consignes:
-                self.consigne.append(consigne)
-        else:
-            self.consigne.append(consignes)
-    
-    def addExercice(self,exercice):
-        result=[]
-        if isinstance(exercice,list):
-            for ligne in exercice:
-                consigneLigne=[]
-                for consigne in self.consigne:
-                    consigneLigne.append(makeChamps(consigne,ligne))
-                result.append("\n".join(consigneLigne))
-                champs=ligne.split(";")
-                for index,champ in enumerate(champs):
-                    if not index in self.choix:
-                        self.choix[index]=[]
-                    self.choix[index].append(champ)
-        else:
-            consigneLigne=[]
-            for consigne in self.consigne:
-                consigneLigne.append(makeChamps(consigne,exercice))
-            result.append("\n".join(consigneLigne))
-            champs=exercice.split(";")
-            for index,champ in enumerate(champs):
-                if not index in self.choix:
-                    self.choix[index]=[]
-                self.choix[index].append(champ)
-        self.exercices.append(result)
-    
-    def getClozes(self):
-        def makeExerciceStructure(exercice):
-            nom="nom"
-            exerciceStructure=[ u'<question type="cloze">',
-                                    u'<name><text>%s</text></name>'%nom,
-                                    u'<questiontext><text><![CDATA[%s]]></text></questiontext>'%exercice,
-                                    u'<generalfeedback><text>Bien reçu.</text></generalfeedback>',
-                                    u'<shuffleanswers>1</shuffleanswers>',
-                                u'</question>'
-            ]
-            return u"\n".join(exerciceStructure)
-                
-        categoryStructure=[u'<question type="category">',
-                            u'<category>',
-                                u'<text>',
-                                    self.category,
-                                u'</text>',
-                            u'</category>',
-                        u'</question>'
-                        ]
-        result=u"\n".join(categoryStructure)
-        result+=u"\n"+u"\n".join(self.consigne)
-        for exercice in self.exercices:
-            if isinstance(exercice,list):
-                for ligne in exercice:
-                    result+=u"\n"+makeExerciceStructure(ligne)
-            else:
-                result+=u"\n"+makeExerciceStructure(exercice)
-        return result
 
 class MoodleXML:
     def __init__(self):
