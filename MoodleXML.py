@@ -1,9 +1,11 @@
 # -*- coding: utf8 -*-
 
 import re
+import random
 
 choixMultiples=["MC","MCV","MCH"]
 choixSimples=["SA","SAC"]
+nChoix=1
 
 def makeChamps(chaine,champs):
 #    print chaine, donnees
@@ -56,6 +58,17 @@ class XMLClozes:
           result+=makeExerciceStructure(exercice)
         return result
 
+class Exercice:
+  '''
+  Conteneur pour un ensemble de réponses pour un exercice
+  Indépendant du format de sortie (Cloze ou autre)
+  '''
+  def __init__(self,boucle,conclusion):
+    self.boucle=boucle
+    self.conclusion=conclusion
+
+    
+
 class ClozeSerie:
     '''
     Conteneur pour les éléments d'une série d'exercices Cloze
@@ -84,9 +97,9 @@ class ClozeSerie:
         Stocker les ensembles de réponses et les possibilités pour chaque position
         '''
         self.exercices.append(exercice)
-        boucle=exercice[0]
-        conclusion=exercice[1]
-        print boucle,conclusion
+        boucle=exercice.boucle
+        conclusion=exercice.conclusion
+#        print boucle,conclusion
         for reponses in boucle:
             for index in self.mcBoucles:
                 if not index in self.reponsesBoucles:
@@ -96,10 +109,25 @@ class ClozeSerie:
             if not index in self.reponsesConclusions:
                 self.reponsesConclusions[index]=set()
             self.reponsesConclusions[index].add(conclusion[index])
-        
+       
+    def getChoix(self,index,bonneReponse,section="boucle"):
+      print index,bonneReponse,self.reponsesBoucles[index]
+      if section=="boucle":
+        choixPossibles=self.reponsesBoucles[index].copy()
+      elif section=="conclusion":
+        choixPossibles=self.reponsesConclusions[index].copy()
+      choixPossibles.remove(bonneReponse)
+      choix=random.sample(choixPossibles,nChoix)
+      print bonneReponse,choix
+      return bonneReponse+"~"+"~".join(choix)
+      
     def makeSerie(self):
-        for ligne in consigne.getConsigne(*element):
-            self.exercice.append(ligne)
+      for exercice in self.exercices:
+        for element in exercice.boucle:
+          for mc in self.mcBoucles:
+            print "{1:%s:=%s}"%(self.sBoucle[mc],self.getChoix(mc,element[mc]))
+#      for ligne in consigne.getConsigne(*element):
+#        self.exercice.append(ligne)
             
     
 
