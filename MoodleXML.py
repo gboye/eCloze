@@ -138,6 +138,18 @@ class ClozeExercice:
         self.elements=[]
         self.exercice=[]
         self.enonce=""
+
+    def makeExerciceStructure(exercice):
+        exerciceStructure=[ 
+            u'<question type="cloze">',
+                u'<name><text>%s</text></name>'%exercice.titre,
+                u'<questiontext><text><![CDATA[%s]]></text></questiontext>'%"\n".join(exercice.enonce),
+                u'<generalfeedback><text>Bien reçu.</text></generalfeedback>',
+                u'<shuffleanswers>1</shuffleanswers>',
+            u'</question>'
+            ]
+        return u"\n".join(exerciceStructure)
+
     
     def addElement(self,boucles,conclusion,consigne):
         self.elements.append((boucles,conclusion))

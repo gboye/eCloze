@@ -32,3 +32,8 @@ Données:
             - [VENDEUR,VENDRE,agent de BASE]
             - [POISSONIER,POISSON,activité en rapport avec BASE]
         conclusion: [la sémantique,la phonologie]
+    - Noms d'agent:
+        boucle:
+            - [BATTEUR,BATTRE,agent de BASE]
+            - [COIFFEUR,COIFFER,agent de BASE]
+        conclusion: [la sémantique et la phonologie, pas de différence]
