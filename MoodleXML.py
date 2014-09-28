@@ -14,7 +14,7 @@ def makeChamps(chaine,champs):
         sChamp=re.match("#(\d+)#",chunk)
         if sChamp:
             nChamp=int(sChamp.group(1))-1
-            result+=champs[nChamp]
+            result+=champs[nChamp].decode("utf8")
         else:
             result+=chunk
     return result
@@ -94,7 +94,7 @@ class ClozeSerie:
                     self.reponsesBoucles[nStructure]=set()
                 self.reponsesBoucles[nStructure].add(reponses[nStructure])
         for nStructure,structure in enumerate(self.sConclusion):
-          if structure in choixMultiples:
+          if structure in choixMultiples and nStructure in range(len(conclusion)):
             if not nStructure in self.reponsesConclusions:
                 self.reponsesConclusions[nStructure]=set()
             self.reponsesConclusions[nStructure].add(conclusion[nStructure])
@@ -111,7 +111,9 @@ class ClozeSerie:
     def makeSerie(self,consigne):
       for nExercice,exercice in enumerate(self.exercices):
         for nElement,element in enumerate(exercice.boucle):
+#          print nElement,element
           for nChamp, champ in enumerate(element):
+#            print nChamp, champ
             if self.sBoucle[nChamp] in choixMultiples:
               self.exercices[nExercice].boucle[nElement][nChamp]="{1:%s:=%s}"%(self.sBoucle[nChamp],self.getChoix(nChamp,element[nChamp]))
             elif self.sBoucle[nChamp] in choixSimples:
@@ -206,6 +208,7 @@ class ClozeConsigne:
         result=[]
         lignes=exercice.boucle
         conclusion=exercice.conclusion
+        print conclusion
         if self.globalWrap:
             result.append(self.headerGlobal)
         if not isinstance(lignes,list):
@@ -217,7 +220,7 @@ class ClozeConsigne:
                 result.append(makeChamps(element,ligne))
             if self.boucleWrap:
                 result.append(self.trailerBoucle)
-        if conclusion!="" and self.conclusionWrap:
+        if conclusion and self.conclusionWrap:
             result.append(self.headerConclusion)
             for element in self.conclusion:
                 result.append(makeChamps(element,conclusion))
