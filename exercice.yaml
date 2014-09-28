@@ -6,15 +6,15 @@ Boucle:
     Cloze: [TXT,SAC,MC]
     début: ""
     contenu: 
-        - "Donnez la base et la construction correspondant au lexème #0#"
-        - "Base : #1#, Construction : #2#"
+        - "Donnez la base et la construction correspondant au lexème #1#"
+        - "Base : #2#, Construction : #3#"
     fin: ""
 Conclusion:
-    Cloze: [MC,MC]
+    Cloze: [MCH,MC]
     début: ""
     contenu:
-        - "Quel est le point commun entre ces deux constructions ? #0#"
-        - "Quelle est la différence entre ces deux constructions ? #1#"
+        - "Quel est le point commun entre ces deux constructions ? #1#"
+        - "Quelle est la différence entre ces deux constructions ? #2#"
     fin: ""
 Données:
     - Dérivés en -ier:
@@ -32,3 +32,8 @@ Données:
             - [VENDEUR,VENDRE,agent de BASE]
             - [POISSONIER,POISSON,activité en rapport avec BASE]
         conclusion: [la sémantique,la phonologie]
+    - Noms d'agent:
+        boucle:
+            - [BATTEUR,BATTRE,agent de BASE]
+            - [COIFFEUR,COIFFER,agent de BASE]
+        conclusion: [la sémantique et la phonologie, pas de différence]

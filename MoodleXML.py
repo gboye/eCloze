@@ -1,19 +1,18 @@
 # -*- coding: utf8 -*-
 
 import re
+import random
 
 choixMultiples=["MC","MCV","MCH"]
 choixSimples=["SA","SAC"]
+nChoix=1
 
 def makeChamps(chaine,champs):
-#    print chaine, donnees
-#    champs=donnees.split(";")
     chunks=re.findall(r"(#[^#]+#|[^#]*)",chaine)
     result=""
     for chunk in chunks:
         sChamp=re.match("#(\d+)#",chunk)
         if sChamp:
-#            print sChamp.group(),donnees,champs
             nChamp=int(sChamp.group(1))-1
             result+=champs[nChamp]
         else:
@@ -56,6 +55,17 @@ class XMLClozes:
           result+=makeExerciceStructure(exercice)
         return result
 
+class Exercice:
+  '''
+  Conteneur pour un ensemble de réponses pour un exercice
+  Indépendant du format de sortie (Cloze ou autre)
+  '''
+  def __init__(self,boucle,conclusion):
+    self.boucle=boucle
+    self.conclusion=conclusion
+
+    
+
 class ClozeSerie:
     '''
     Conteneur pour les éléments d'une série d'exercices Cloze
@@ -69,39 +79,50 @@ class ClozeSerie:
         self.reponsesBoucles={}
         self.reponsesConclusions={}
         self.exercices=[]
-        self.mcBoucles=[]
-        self.mcConclusions=[]
-        for index, element in enumerate(sBoucle):
-            if element in choixMultiples:
-                self.mcBoucles.append(index)
-        for index, element in enumerate(sConclusion):
-            if element in choixMultiples:
-                self.mcConclusions.append(index)
-        
     
     def addExercice(self,exercice):
         '''
         Stocker les ensembles de réponses et les possibilités pour chaque position
         '''
         self.exercices.append(exercice)
-        boucle=exercice[0]
-        conclusion=exercice[1]
-        print boucle,conclusion
+        boucle=exercice.boucle
+        conclusion=exercice.conclusion
         for reponses in boucle:
-            for index in self.mcBoucles:
-                if not index in self.reponsesBoucles:
-                    self.reponsesBoucles[index]=set()
-                self.reponsesBoucles[index].add(reponses[index])
-        for index in self.mcConclusions:
-            if not index in self.reponsesConclusions:
-                self.reponsesConclusions[index]=set()
-            self.reponsesConclusions[index].add(conclusion[index])
-        
-    def makeSerie(self):
-        for ligne in consigne.getConsigne(*element):
-            self.exercice.append(ligne)
+          for nStructure,structure in enumerate(self.sBoucle):
+            if structure in choixMultiples:
+                if not nStructure in self.reponsesBoucles:
+                    self.reponsesBoucles[nStructure]=set()
+                self.reponsesBoucles[nStructure].add(reponses[nStructure])
+        for nStructure,structure in enumerate(self.sConclusion):
+          if structure in choixMultiples:
+            if not nStructure in self.reponsesConclusions:
+                self.reponsesConclusions[nStructure]=set()
+            self.reponsesConclusions[nStructure].add(conclusion[nStructure])
+       
+    def getChoix(self,index,bonneReponse,section="boucle"):
+      if section=="boucle":
+        choixPossibles=self.reponsesBoucles[index].copy()
+      elif section=="conclusion":
+        choixPossibles=self.reponsesConclusions[index].copy()
+      choixPossibles.remove(bonneReponse)
+      choix=random.sample(choixPossibles,nChoix)
+      return bonneReponse+"~"+"~".join(choix)
+      
+    def makeSerie(self,consigne):
+      for nExercice,exercice in enumerate(self.exercices):
+        for nElement,element in enumerate(exercice.boucle):
+          for nChamp, champ in enumerate(element):
+            if self.sBoucle[nChamp] in choixMultiples:
+              self.exercices[nExercice].boucle[nElement][nChamp]="{1:%s:=%s}"%(self.sBoucle[nChamp],self.getChoix(nChamp,element[nChamp]))
+            elif self.sBoucle[nChamp] in choixSimples:
+              self.exercices[nExercice].boucle[nElement][nChamp]="{1:%s:=%s}"%(self.sBoucle[nChamp],element[nChamp])
+        for nElement, element in enumerate(exercice.conclusion):
+          if self.sConclusion[nElement] in choixMultiples:
+            self.exercices[nExercice].conclusion[nElement]="{1:%s:=%s}"%(self.sConclusion[nElement],self.getChoix(nElement,element,"conclusion"))
+          elif self.sConclusion[nElement] in choixSimples:
+            self.exercices[nExercice].conclusion[nElement]="{1:%s:=%s}"%(self.sConclusion[nElement],element)
+        print consigne.getConsigne(exercice)
             
-    
 
 class ClozeExercice:
     '''
@@ -117,6 +138,18 @@ class ClozeExercice:
         self.elements=[]
         self.exercice=[]
         self.enonce=""
+
+    def makeExerciceStructure(exercice):
+        exerciceStructure=[ 
+            u'<question type="cloze">',
+                u'<name><text>%s</text></name>'%exercice.titre,
+                u'<questiontext><text><![CDATA[%s]]></text></questiontext>'%"\n".join(exercice.enonce),
+                u'<generalfeedback><text>Bien reçu.</text></generalfeedback>',
+                u'<shuffleanswers>1</shuffleanswers>',
+            u'</question>'
+            ]
+        return u"\n".join(exerciceStructure)
+
     
     def addElement(self,boucles,conclusion,consigne):
         self.elements.append((boucles,conclusion))
@@ -169,8 +202,10 @@ class ClozeConsigne:
             self.trailerConclusion=[]
             self.conclusionWrap=False
     
-    def getConsigne(self,lignes,conclusion=""):
+    def getConsigne(self,exercice):
         result=[]
+        lignes=exercice.boucle
+        conclusion=exercice.conclusion
         if self.globalWrap:
             result.append(self.headerGlobal)
         if not isinstance(lignes,list):
