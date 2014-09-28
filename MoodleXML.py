@@ -5,7 +5,7 @@ import random
 
 choixMultiples=["MC","MCV","MCH"]
 choixSimples=["SA","SAC"]
-nChoix=1
+maxChoix=10
 
 def makeChamps(chaine,champs):
     chunks=re.findall(r"(#[^#]+#|[^#]*)",chaine)
@@ -30,18 +30,7 @@ class XMLClozes:
     def addExercice(self,exercice):
         self.exercices.append(exercice)
     
-    def getClozes(self):
-        def makeExerciceStructure(exercice):
-            exerciceStructure=[ 
-                u'<question type="cloze">',
-                    u'<name><text>%s</text></name>'%exercice.titre,
-                    u'<questiontext><text><![CDATA[%s]]></text></questiontext>'%"\n".join(exercice.enonce),
-                    u'<generalfeedback><text>Bien reçu.</text></generalfeedback>',
-                    u'<shuffleanswers>1</shuffleanswers>',
-                u'</question>'
-                ]
-            return u"\n".join(exerciceStructure)
-                
+    def getClozes(self):                
         categoryStructure=[u'<question type="category">',
                             u'<category>',
                                 u'<text>',
@@ -52,7 +41,7 @@ class XMLClozes:
                         ]
         result=u"\n".join(categoryStructure)
         for exercice in self.exercices:
-          result+=makeExerciceStructure(exercice)
+          result+=exercice.forme
         return result
 
 class Exercice:
@@ -100,15 +89,18 @@ class ClozeSerie:
             self.reponsesConclusions[nStructure].add(conclusion[nStructure])
        
     def getChoix(self,index,bonneReponse,section="boucle"):
+#      print index,bonneReponse,section
       if section=="boucle":
         choixPossibles=self.reponsesBoucles[index].copy()
       elif section=="conclusion":
         choixPossibles=self.reponsesConclusions[index].copy()
       choixPossibles.remove(bonneReponse)
+      nChoix=min(maxChoix,len(choixPossibles))
       choix=random.sample(choixPossibles,nChoix)
       return bonneReponse+"~"+"~".join(choix)
       
     def makeSerie(self,consigne):
+      result=[]
       for nExercice,exercice in enumerate(self.exercices):
         for nElement,element in enumerate(exercice.boucle):
 #          print nElement,element
@@ -123,40 +115,33 @@ class ClozeSerie:
             self.exercices[nExercice].conclusion[nElement]="{1:%s:=%s}"%(self.sConclusion[nElement],self.getChoix(nElement,element,"conclusion"))
           elif self.sConclusion[nElement] in choixSimples:
             self.exercices[nExercice].conclusion[nElement]="{1:%s:=%s}"%(self.sConclusion[nElement],element)
-        print consigne.getConsigne(exercice)
+        exerciceCloze=[]
+        for element in consigne.getConsigne(exercice):
+          if element!="":
+            exerciceCloze.append(element)
+        result.append("\n".join(exerciceCloze))
+      return result
             
 
 class ClozeExercice:
     '''
     Conteneur pour un exercice Cloze
     
-    on fournit le titre et les éléments à insérer tout prêts
-    
-    boucles contient les éléments Cloze préparés pour l'insertion
-    conclusion également
+    on fournit le titre et le corps de la question à insérer tout prêts
     '''
-    def __init__(self,titre):
+    def __init__(self,titre,corps):
         self.titre=titre
-        self.elements=[]
-        self.exercice=[]
-        self.enonce=""
-
-    def makeExerciceStructure(exercice):
+        self.corps=corps
         exerciceStructure=[ 
             u'<question type="cloze">',
-                u'<name><text>%s</text></name>'%exercice.titre,
-                u'<questiontext><text><![CDATA[%s]]></text></questiontext>'%"\n".join(exercice.enonce),
+                u'<name><text>%s</text></name>'%self.titre,
+                u'<questiontext><text><![CDATA[%s]]></text></questiontext>'%self.corps,
                 u'<generalfeedback><text>Bien reçu.</text></generalfeedback>',
                 u'<shuffleanswers>1</shuffleanswers>',
             u'</question>'
             ]
-        return u"\n".join(exerciceStructure)
+        self.forme=u"\n".join(exerciceStructure)
 
-    
-    def addElement(self,boucles,conclusion,consigne):
-        self.elements.append((boucles,conclusion))
-        for ligne in consigne.getConsigne(boucles,conclusion):
-            self.exercice.append(ligne)
 
 class ClozeConsigne:
     '''
@@ -208,7 +193,6 @@ class ClozeConsigne:
         result=[]
         lignes=exercice.boucle
         conclusion=exercice.conclusion
-        print conclusion
         if self.globalWrap:
             result.append(self.headerGlobal)
         if not isinstance(lignes,list):
