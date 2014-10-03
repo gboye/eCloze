@@ -1,0 +1,17 @@
+Catégorie: Hiragana/Niveau1
+Global:
+    début: ""
+    fin: ""
+Boucle: 
+    Cloze: [TXT,MC]
+    début: ""
+    contenu: 
+        - "Donnez la prononciation correspondant à #1# : #2#"
+    fin: ""
+#Conclusion:
+#    Cloze: [MC,MC]
+#    début: ""
+#    contenu:
+#        - "Quel est le point commun entre ces deux constructions ? #1#"
+#        - "Quelle est la différence entre ces deux constructions ? #2#"
+#    fin: ""

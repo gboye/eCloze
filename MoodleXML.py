@@ -49,9 +49,10 @@ class Exercice:
   Conteneur pour un ensemble de réponses pour un exercice
   Indépendant du format de sortie (Cloze ou autre)
   '''
-  def __init__(self,boucle,conclusion):
+  def __init__(self,boucle,conclusion,titre=""):
     self.boucle=boucle
     self.conclusion=conclusion
+    self.titre=titre
 
     
 
