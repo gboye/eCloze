@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="category">
+<category>
+<text>
+Japonais/Hiragana/Niveau1/MC
+</text>
+</category>
+</question><question type="cloze">
+<name><text>あ</text></name>
+<questiontext><text><![CDATA[Donnez la prononciation correspondant à あ : {1:MC:=a~u~shi~sa~ge~zo~se~gi~za~su~i}]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+</question><question type="cloze">
+<name><text>い</text></name>
+<questiontext><text><![CDATA[Donnez la prononciation correspondant à い : {1:MC:=i~za~ze~gi~shi~go~a~ki~se~ko~sa}]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+</question><question type="cloze">
+<name><text>う</text></name>
+<questiontext><text><![CDATA[Donnez la prononciation correspondant à う : {1:MC:=u~ge~ga~ki~ze~sa~su~o~zo~gi~se}]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+</question><question type="cloze">
+<name><text>え</text></name>
+<questiontext><text><![CDATA[Donnez la prononciation correspondant à え : {1:MC:=e~so~ji~ko~zo~ki~ka~zu~ge~ze~u}]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+</question><question type="cloze">
+<name><text>お</text></name>
+<questiontext><text><![CDATA[Donnez la prononciation correspondant à お : {1:MC:=o~e~gi~se~i~ku~su~so~ge~shi~sa}]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+</question><question type="cloze">
+<name><text>か</text></name>
+<questiontext><text><![CDATA[Donnez la prononciation correspondant à か : {1:MC:=ka~gu~zu~su~u~ku~ze~o~go~gi~ga}]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+</question><question type="cloze">
+<name><text>き</text></name>
+<questiontext><text><![CDATA[Donnez la prononciation correspondant à き : {1:MC:=ki~e~ge~ke~ji~ka~ko~ku~go~gu~se}]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+</question><question type="cloze">
+<name><text>く</text></name>
+<questiontext><text><![CDATA[Donnez la prononciation correspondant à く : {1:MC:=ku~ko~ke~ji~gi~zu~o~zo~ga~go~u}]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+</question><question type="cloze">
+<name><text>け</text></name>
+<questiontext><text><![CDATA[Donnez la prononciation correspondant à け : {1:MC:=ke~sa~o~su~se~gi~ga~zo~a~ze~za}]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+</question><question type="cloze">
+<name><text>こ</text></name>
+<questiontext><text><![CDATA[Donnez la prononciation correspondant à こ : {1:MC:=ko~sa~za~ze~i~ji~gi~gu~su~se~ki}]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+</question><question type="cloze">
+<name><text>が</text></name>
+<questiontext><text><![CDATA[Donnez la prononciation correspondant à が : {1:MC:=ga~so~gu~se~za~zo~ka~u~ze~sa~i}]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+</question><question type="cloze">
+<name><text>ぎ</text></name>
+<questiontext><text><![CDATA[Donnez la prononciation correspondant à ぎ : {1:MC:=gi~ze~u~so~ga~i~go~ge~ka~zu~o}]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+</question><question type="cloze">
+<name><text>ぐ</text></name>
+<questiontext><text><![CDATA[Donnez la prononciation correspondant à ぐ : {1:MC:=gu~ji~ge~za~zo~o~go~sa~zu~so~gi}]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+</question><question type="cloze">
+<name><text>げ</text></name>
+<questiontext><text><![CDATA[Donnez la prononciation correspondant à げ : {1:MC:=ge~za~gi~sa~i~zo~su~e~gu~zu~u}]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+</question><question type="cloze">
+<name><text>ご</text></name>
+<questiontext><text><![CDATA[Donnez la prononciation correspondant à ご : {1:MC:=go~e~zu~ke~su~ze~sa~ge~i~ka~shi}]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+</question><question type="cloze">
+<name><text>さ</text></name>
+<questiontext><text><![CDATA[Donnez la prononciation correspondant à さ : {1:MC:=sa~gi~go~e~se~ga~ka~i~shi~ge~zu}]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+</question><question type="cloze">
+<name><text>し</text></name>
+<questiontext><text><![CDATA[Donnez la prononciation correspondant à し : {1:MC:=shi~o~zu~ga~sa~a~ki~ko~ku~e~so}]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+</question><question type="cloze">
+<name><text>す</text></name>
+<questiontext><text><![CDATA[Donnez la prononciation correspondant à す : {1:MC:=su~ga~ge~ji~ka~gi~shi~gu~o~ke~ku}]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+</question><question type="cloze">
+<name><text>せ</text></name>
+<questiontext><text><![CDATA[Donnez la prononciation correspondant à せ : {1:MC:=se~ka~ku~ko~so~sa~ge~ze~o~e~ke}]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+</question><question type="cloze">
+<name><text>そ</text></name>
+<questiontext><text><![CDATA[Donnez la prononciation correspondant à そ : {1:MC:=so~go~ji~ze~ge~ki~za~zo~ke~shi~ku}]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+</question><question type="cloze">
+<name><text>ざ</text></name>
+<questiontext><text><![CDATA[Donnez la prononciation correspondant à ざ : {1:MC:=za~gi~ge~gu~i~so~ji~u~su~se~go}]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+</question><question type="cloze">
+<name><text>じ</text></name>
+<questiontext><text><![CDATA[Donnez la prononciation correspondant à じ : {1:MC:=ji~zu~ze~ku~sa~gi~ge~za~ko~a~go}]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+</question><question type="cloze">
+<name><text>ず</text></name>
+<questiontext><text><![CDATA[Donnez la prononciation correspondant à ず : {1:MC:=zu~ko~ga~so~i~a~ge~ke~gu~ji~o}]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+</question><question type="cloze">
+<name><text>ぜ</text></name>
+<questiontext><text><![CDATA[Donnez la prononciation correspondant à ぜ : {1:MC:=ze~ge~e~shi~ke~zu~ku~zo~u~ga~i}]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+</question><question type="cloze">
+<name><text>ぞ</text></name>
+<questiontext><text><![CDATA[Donnez la prononciation correspondant à ぞ : {1:MC:=zo~ki~ko~gu~se~ku~ga~gi~su~e~ke}]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+</question>
+</quiz>

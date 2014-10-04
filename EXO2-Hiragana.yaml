@@ -1,17 +1,10 @@
-Catégorie: Hiragana/Niveau1
+Catégorie: Japonais/Hiragana/Niveau/Son => Ecrit/SA
 Global:
     début: ""
     fin: ""
 Boucle: 
-    Cloze: [TXT,MC]
+    Cloze: [SA,TXT]
     début: ""
     contenu: 
-        - "Donnez la prononciation correspondant à #1# : #2#"
+        - "Donnez la graphie correspondant à #2# : #1#"
     fin: ""
-#Conclusion:
-#    Cloze: [MC,MC]
-#    début: ""
-#    contenu:
-#        - "Quel est le point commun entre ces deux constructions ? #1#"
-#        - "Quelle est la différence entre ces deux constructions ? #2#"
-#    fin: ""

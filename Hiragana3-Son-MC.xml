@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="category">
+<category>
+<text>
+Japonais/Hiragana/Niveau3/Son => Ecrit/MC
+</text>
+</category>
+</question><question type="cloze">
+<name><text>ぱ</text></name>
+<questiontext><text><![CDATA[Donnez la graphie correspondant à pa : {1:MC:=ぱ~しょ~きょ~ぷ~にょ~ぺ~きゅ~にゃ~を~しゃ~りゅ}]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+</question><question type="cloze">
+<name><text>ぴ</text></name>
+<questiontext><text><![CDATA[Donnez la graphie correspondant à pi : {1:MC:=ぴ~ぴゅ~ちょ~びょ~ぴょ~ゆ~きゃ~を~ん~ぴゃ~ま}]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+</question><question type="cloze">
+<name><text>ぷ</text></name>
+<questiontext><text><![CDATA[Donnez la graphie correspondant à pu : {1:MC:=ぷ~じゃ~ん~ちゅ~ぴゃ~ちゃ~きゅ~ゆ~にょ~きゃ~ぱ}]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+</question><question type="cloze">
+<name><text>ぺ</text></name>
+<questiontext><text><![CDATA[Donnez la graphie correspondant à pe : {1:MC:=ぺ~にゃ~しょ~みょ~きゃ~り~ちゅ~ゆ~ま~よ~ぴ}]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+</question><question type="cloze">
+<name><text>ぽ</text></name>
+<questiontext><text><![CDATA[Donnez la graphie correspondant à po : {1:MC:=ぽ~ぴゃ~ゆ~にょ~ぴ~じゅ~りょ~よ~や~り~む}]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+</question><question type="cloze">
+<name><text>ま</text></name>
+<questiontext><text><![CDATA[Donnez la graphie correspondant à ma : {1:MC:=ま~じゅ~にょ~む~ちょ~みゃ~ゆ~りゃ~ぴょ~ぷ~にゃ}]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+</question><question type="cloze">
+<name><text>み</text></name>
+<questiontext><text><![CDATA[Donnez la graphie correspondant à mi : {1:MC:=み~ぴゅ~を~わ~ぷ~ぽ~め~れ~しゃ~ちょ~きょ}]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+</question><question type="cloze">
+<name><text>む</text></name>
+<questiontext><text><![CDATA[Donnez la graphie correspondant à mu : {1:MC:=む~も~よ~しゅ~れ~びょ~ゆ~びゅ~や~る~ぴ}]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+</question><question type="cloze">
+<name><text>め</text></name>
+<questiontext><text><![CDATA[Donnez la graphie correspondant à me : {1:MC:=め~にょ~ぺ~りゃ~じゅ~り~も~ぴゅ~ろ~にゃ~びょ}]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+</question><question type="cloze">
+<name><text>も</text></name>
+<questiontext><text><![CDATA[Donnez la graphie correspondant à mo : {1:MC:=も~み~ぴ~ぷ~しゃ~ちょ~わ~れ~きゅ~びゅ~みょ}]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+</question><question type="cloze">
+<name><text>や</text></name>
+<questiontext><text><![CDATA[Donnez la graphie correspondant à ya : {1:MC:=や~しゅ~ぽ~ゆ~じゃ~み~も~しょ~ぴゃ~ぺ~みゃ}]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+</question><question type="cloze">
+<name><text>ゆ</text></name>
+<questiontext><text><![CDATA[Donnez la graphie correspondant à yu : {1:MC:=ゆ~ちゅ~を~る~しょ~み~ま~ぷ~みゅ~れ~みょ}]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+</question><question type="cloze">
+<name><text>よ</text></name>
+<questiontext><text><![CDATA[Donnez la graphie correspondant à yo : {1:MC:=よ~わ~みょ~ぴ~ゆ~り~りゅ~ぱ~きゅ~りょ~ちょ}]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+</question><question type="cloze">
+<name><text>ら</text></name>
+<questiontext><text><![CDATA[Donnez la graphie correspondant à ra : {1:MC:=ら~も~る~ん~ぷ~じょ~みゃ~や~きゅ~ぴゃ~じゃ}]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+</question><question type="cloze">
+<name><text>り</text></name>
+<questiontext><text><![CDATA[Donnez la graphie correspondant à ri : {1:MC:=り~きゃ~や~じょ~りょ~にゃ~にょ~わ~む~ぴょ~りゃ}]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+</question><question type="cloze">
+<name><text>る</text></name>
+<questiontext><text><![CDATA[Donnez la graphie correspondant à ru : {1:MC:=る~れ~しゅ~ぴゃ~じゃ~り~ま~ん~びょ~きょ~を}]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+</question><question type="cloze">
+<name><text>れ</text></name>
+<questiontext><text><![CDATA[Donnez la graphie correspondant à re : {1:MC:=れ~りゅ~しゃ~ま~ぱ~みゅ~びゃ~を~ちゃ~わ~ろ}]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+</question><question type="cloze">
+<name><text>ろ</text></name>
+<questiontext><text><![CDATA[Donnez la graphie correspondant à ro : {1:MC:=ろ~じゃ~ちょ~や~みょ~ぴゅ~りゃ~しゃ~ぱ~びゅ~にょ}]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+</question><question type="cloze">
+<name><text>わ</text></name>
+<questiontext><text><![CDATA[Donnez la graphie correspondant à wa : {1:MC:=わ~じゅ~りゅ~しゅ~り~み~ぺ~にょ~しゃ~きゃ~りょ}]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+</question><question type="cloze">
+<name><text>を</text></name>
+<questiontext><text><![CDATA[Donnez la graphie correspondant à o : {1:MC:=を~ろ~にゅ~ぷ~む~ぽ~る~びゃ~め~びゅ~しゃ}]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+</question><question type="cloze">
+<name><text>ん</text></name>
+<questiontext><text><![CDATA[Donnez la graphie correspondant à n : {1:MC:=ん~みゃ~り~きょ~ろ~びょ~も~じゅ~にゅ~や~れ}]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+</question><question type="cloze">
+<name><text>きゃ</text></name>
+<questiontext><text><![CDATA[Donnez la graphie correspondant à kya : {1:MC:=きゃ~きゅ~ちゃ~ぴゃ~ぺ~ん~じゃ~も~る~わ~れ}]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+</question><question type="cloze">
+<name><text>きゅ</text></name>
+<questiontext><text><![CDATA[Donnez la graphie correspondant à kyu : {1:MC:=きゅ~よ~み~ちゅ~びゅ~や~ちゃ~みゃ~め~りゅ~ぴゅ}]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+</question><question type="cloze">
+<name><text>きょ</text></name>
+<questiontext><text><![CDATA[Donnez la graphie correspondant à kyo : {1:MC:=きょ~みゅ~ぴゃ~め~る~も~や~ゆ~ちゅ~じょ~り}]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+</question><question type="cloze">
+<name><text>しゃ</text></name>
+<questiontext><text><![CDATA[Donnez la graphie correspondant à sha : {1:MC:=しゃ~ま~ろ~ら~じょ~ん~りゅ~ぴ~みょ~みゃ~りゃ}]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+</question><question type="cloze">
+<name><text>しゅ</text></name>
+<questiontext><text><![CDATA[Donnez la graphie correspondant à shu : {1:MC:=しゅ~ま~ぴょ~ろ~にょ~ぴ~わ~びょ~ぷ~ゆ~じょ}]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+</question><question type="cloze">
+<name><text>しょ</text></name>
+<questiontext><text><![CDATA[Donnez la graphie correspondant à sho : {1:MC:=しょ~きゃ~ぺ~や~みゅ~りゃ~みょ~じゅ~ちょ~りゅ~れ}]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+</question><question type="cloze">
+<name><text>じゃ</text></name>
+<questiontext><text><![CDATA[Donnez la graphie correspondant à ja : {1:MC:=じゃ~しょ~ちょ~じょ~ゆ~きゅ~ぱ~わ~しゅ~み~きょ}]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+</question><question type="cloze">
+<name><text>じゅ</text></name>
+<questiontext><text><![CDATA[Donnez la graphie correspondant à ju : {1:MC:=じゅ~ぺ~ゆ~れ~よ~ちょ~りゃ~め~ぴゃ~わ~きゃ}]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+</question><question type="cloze">
+<name><text>じょ</text></name>
+<questiontext><text><![CDATA[Donnez la graphie correspondant à jo : {1:MC:=じょ~びょ~きょ~れ~り~ゆ~りゅ~も~ぴゅ~みょ~を}]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+</question><question type="cloze">
+<name><text>ちゃ</text></name>
+<questiontext><text><![CDATA[Donnez la graphie correspondant à cha : {1:MC:=ちゃ~りゅ~め~じゃ~や~ぺ~しゅ~ぴゅ~り~びゃ~りゃ}]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+</question><question type="cloze">
+<name><text>ちゅ</text></name>
+<questiontext><text><![CDATA[Donnez la graphie correspondant à chu : {1:MC:=ちゅ~きゃ~れ~ぴょ~ちゃ~しゃ~ろ~わ~り~ぷ~ぴゃ}]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+</question><question type="cloze">
+<name><text>ちょ</text></name>
+<questiontext><text><![CDATA[Donnez la graphie correspondant à cho : {1:MC:=ちょ~びゃ~ら~しょ~ぷ~りゅ~ぴゅ~にゅ~しゅ~ろ~ぴゃ}]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+</question><question type="cloze">
+<name><text>にゃ</text></name>
+<questiontext><text><![CDATA[Donnez la graphie correspondant à nya : {1:MC:=にゃ~ぴょ~り~ちゃ~きゅ~ま~ぴゅ~りゃ~びゃ~わ~びゅ}]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+</question><question type="cloze">
+<name><text>にゅ</text></name>
+<questiontext><text><![CDATA[Donnez la graphie correspondant à nyu : {1:MC:=にゅ~ぷ~にゃ~じゃ~め~ぴゃ~ゆ~も~よ~み~びょ}]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+</question><question type="cloze">
+<name><text>にょ</text></name>
+<questiontext><text><![CDATA[Donnez la graphie correspondant à nyo : {1:MC:=にょ~ぴ~ろ~きゃ~ちゅ~りょ~きょ~り~ら~み~しょ}]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+</question><question type="cloze">
+<name><text>びゃ</text></name>
+<questiontext><text><![CDATA[Donnez la graphie correspondant à bya : {1:MC:=びゃ~み~を~じょ~ら~ぴゃ~みゃ~ん~ちゅ~じゅ~みょ}]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+</question><question type="cloze">
+<name><text>びゅ</text></name>
+<questiontext><text><![CDATA[Donnez la graphie correspondant à byu : {1:MC:=びゅ~りょ~ちゅ~じゃ~ぴゃ~みゅ~る~ゆ~びゃ~にょ~ちゃ}]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+</question><question type="cloze">
+<name><text>びょ</text></name>
+<questiontext><text><![CDATA[Donnez la graphie correspondant à byo : {1:MC:=びょ~ゆ~ぷ~や~しょ~ま~みゃ~よ~を~にゅ~も}]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+</question><question type="cloze">
+<name><text>ぴゃ</text></name>
+<questiontext><text><![CDATA[Donnez la graphie correspondant à pya : {1:MC:=ぴゃ~わ~ん~しょ~りょ~にょ~にゃ~きゃ~も~ぴ~じゃ}]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+</question><question type="cloze">
+<name><text>ぴゅ</text></name>
+<questiontext><text><![CDATA[Donnez la graphie correspondant à pyu : {1:MC:=ぴゅ~ま~じゅ~じゃ~りゅ~め~みょ~ろ~ぽ~りょ~ぱ}]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+</question><question type="cloze">
+<name><text>ぴょ</text></name>
+<questiontext><text><![CDATA[Donnez la graphie correspondant à pyo : {1:MC:=ぴょ~ちゃ~きゅ~も~きゃ~にゅ~ちょ~ちゅ~よ~む~じゃ}]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+</question><question type="cloze">
+<name><text>にゃ</text></name>
+<questiontext><text><![CDATA[Donnez la graphie correspondant à nya : {1:MC:=にゃ~りょ~ま~を~きょ~みょ~びゃ~にゅ~しょ~ぺ~りゅ}]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+</question><question type="cloze">
+<name><text>にゅ</text></name>
+<questiontext><text><![CDATA[Donnez la graphie correspondant à nyu : {1:MC:=にゅ~しょ~わ~ま~ぴょ~む~じゃ~ぱ~びゃ~ぽ~れ}]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+</question><question type="cloze">
+<name><text>にょ</text></name>
+<questiontext><text><![CDATA[Donnez la graphie correspondant à nyo : {1:MC:=にょ~む~ま~ぴょ~ぺ~きょ~ゆ~きゅ~を~ちゃ~め}]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+</question><question type="cloze">
+<name><text>みゃ</text></name>
+<questiontext><text><![CDATA[Donnez la graphie correspondant à mya : {1:MC:=みゃ~じゃ~きょ~じゅ~にゃ~ゆ~ちゃ~きゃ~を~も~じょ}]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+</question><question type="cloze">
+<name><text>みゅ</text></name>
+<questiontext><text><![CDATA[Donnez la graphie correspondant à myu : {1:MC:=みゅ~れ~み~りゃ~ぴゅ~にゅ~ゆ~ぴょ~しゃ~ぴゃ~びゃ}]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+</question><question type="cloze">
+<name><text>みょ</text></name>
+<questiontext><text><![CDATA[Donnez la graphie correspondant à myo : {1:MC:=みょ~しょ~や~しゅ~ぴゃ~にゅ~り~びょ~りょ~み~ら}]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+</question><question type="cloze">
+<name><text>りゃ</text></name>
+<questiontext><text><![CDATA[Donnez la graphie correspondant à rya : {1:MC:=りゃ~きょ~ぴょ~しゃ~しゅ~きゃ~ん~ら~ぱ~じゃ~み}]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+</question><question type="cloze">
+<name><text>りゅ</text></name>
+<questiontext><text><![CDATA[Donnez la graphie correspondant à ryu : {1:MC:=りゅ~ん~ぷ~ぴ~りゃ~きょ~も~ま~め~ちゃ~ぽ}]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+</question><question type="cloze">
+<name><text>りょ</text></name>
+<questiontext><text><![CDATA[Donnez la graphie correspondant à ryo : {1:MC:=りょ~ま~びゅ~ぱ~め~じゅ~り~ちょ~ろ~ぴゃ~ん}]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+</question>
+</quiz>

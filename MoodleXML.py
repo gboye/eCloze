@@ -7,6 +7,8 @@ choixMultiples=["MC","MCV","MCH"]
 choixSimples=["SA","SAC"]
 maxChoix=10
 
+debug=False
+
 def makeChamps(chaine,champs):
     chunks=re.findall(r"(#[^#]+#|[^#]*)",chaine)
     result=""
@@ -107,10 +109,13 @@ class ClozeSerie:
 #          print nElement,element
           for nChamp, champ in enumerate(element):
 #            print nChamp, champ
-            if self.sBoucle[nChamp] in choixMultiples:
-              self.exercices[nExercice].boucle[nElement][nChamp]="{1:%s:=%s}"%(self.sBoucle[nChamp],self.getChoix(nChamp,element[nChamp]))
-            elif self.sBoucle[nChamp] in choixSimples:
-              self.exercices[nExercice].boucle[nElement][nChamp]="{1:%s:=%s}"%(self.sBoucle[nChamp],element[nChamp])
+            if nChamp < len(self.sBoucle):
+              if self.sBoucle[nChamp] in choixMultiples:
+                self.exercices[nExercice].boucle[nElement][nChamp]="{1:%s:=%s}"%(self.sBoucle[nChamp],self.getChoix(nChamp,element[nChamp]))
+              elif self.sBoucle[nChamp] in choixSimples:
+                self.exercices[nExercice].boucle[nElement][nChamp]="{1:%s:=%s}"%(self.sBoucle[nChamp],element[nChamp])
+            else:
+              if debug: print "Champ vide",nChamp
         for nElement, element in enumerate(exercice.conclusion):
           if self.sConclusion[nElement] in choixMultiples:
             self.exercices[nExercice].conclusion[nElement]="{1:%s:=%s}"%(self.sConclusion[nElement],self.getChoix(nElement,element,"conclusion"))
@@ -120,7 +125,8 @@ class ClozeSerie:
         for element in consigne.getConsigne(exercice):
           if element!="":
             exerciceCloze.append(element)
-        result.append("\n".join(exerciceCloze))
+        exerciceSerie=ClozeExercice(exercice.titre,"\n".join(exerciceCloze))
+        result.append(exerciceSerie)
       return result
             
 
