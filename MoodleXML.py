@@ -1,39 +1,168 @@
 # -*- coding: utf8 -*-
 
 import re
-    
+import random
+
+choixMultiples=["MC","MCV","MCH"]
+choixSimples=["SA","SAC"]
+maxChoix=10
+
+debug=False
+
 def makeChamps(chaine,champs):
-#    print chaine, donnees
-#    champs=donnees.split(";")
     chunks=re.findall(r"(#[^#]+#|[^#]*)",chaine)
     result=""
     for chunk in chunks:
         sChamp=re.match("#(\d+)#",chunk)
         if sChamp:
-#            print sChamp.group(),donnees,champs
             nChamp=int(sChamp.group(1))-1
-            result+=champs[nChamp]
+            result+=champs[nChamp].decode("utf8")
         else:
             result+=chunk
     return result
 
+class XMLClozes:
+    '''
+    Conteneur pour une série d'exercices d'une même catégorie
+    '''
+    def __init__(self,category):
+        self.category=category
+        self.exercices=[]
+    
+    def addExercice(self,exercice):
+        self.exercices.append(exercice)
+    
+    def getClozes(self):                
+        categoryStructure=[u'<question type="category">',
+                            u'<category>',
+                                u'<text>',
+                                    self.category,
+                                u'</text>',
+                            u'</category>',
+                        u'</question>'
+                        ]
+        result=u"\n".join(categoryStructure)
+        for exercice in self.exercices:
+          result+=exercice.forme
+        return result
+
+class Exercice:
+  '''
+  Conteneur pour un ensemble de réponses pour un exercice
+  Indépendant du format de sortie (Cloze ou autre)
+  '''
+  def __init__(self,boucle,conclusion,titre=""):
+    self.boucle=boucle
+    self.conclusion=conclusion
+    self.titre=titre
+
+    
+
+class ClozeSerie:
+    '''
+    Conteneur pour les éléments d'une série d'exercices Cloze
+    
+    L'initialisation demande la structure des boucles et de la conclusion 
+    La structure est une liste de TXT,SA,SAC,MC,MCV,MCH
+    '''
+    def __init__(self,sBoucle,sConclusion):
+        self.sBoucle=sBoucle
+        self.sConclusion=sConclusion
+        self.reponsesBoucles={}
+        self.reponsesConclusions={}
+        self.exercices=[]
+    
+    def addExercice(self,exercice):
+        '''
+        Stocker les ensembles de réponses et les possibilités pour chaque position
+        '''
+        self.exercices.append(exercice)
+        boucle=exercice.boucle
+        conclusion=exercice.conclusion
+        for reponses in boucle:
+          for nStructure,structure in enumerate(self.sBoucle):
+            if structure in choixMultiples:
+                if not nStructure in self.reponsesBoucles:
+                    self.reponsesBoucles[nStructure]=set()
+                self.reponsesBoucles[nStructure].add(reponses[nStructure])
+        for nStructure,structure in enumerate(self.sConclusion):
+          if structure in choixMultiples and nStructure in range(len(conclusion)):
+            if not nStructure in self.reponsesConclusions:
+                self.reponsesConclusions[nStructure]=set()
+            self.reponsesConclusions[nStructure].add(conclusion[nStructure])
+       
+    def getChoix(self,index,bonneReponse,section="boucle"):
+#      print index,bonneReponse,section
+      if section=="boucle":
+        choixPossibles=self.reponsesBoucles[index].copy()
+      elif section=="conclusion":
+        choixPossibles=self.reponsesConclusions[index].copy()
+      choixPossibles.remove(bonneReponse)
+      nChoix=min(maxChoix,len(choixPossibles))
+      choix=random.sample(choixPossibles,nChoix)
+      return bonneReponse+"~"+"~".join(choix)
+      
+    def makeSerie(self,consigne):
+      result=[]
+      for nExercice,exercice in enumerate(self.exercices):
+        for nElement,element in enumerate(exercice.boucle):
+#          print nElement,element
+          for nChamp, champ in enumerate(element):
+#            print nChamp, champ
+            if nChamp < len(self.sBoucle):
+              if self.sBoucle[nChamp] in choixMultiples:
+                self.exercices[nExercice].boucle[nElement][nChamp]="{1:%s:=%s}"%(self.sBoucle[nChamp],self.getChoix(nChamp,element[nChamp]))
+              elif self.sBoucle[nChamp] in choixSimples:
+                self.exercices[nExercice].boucle[nElement][nChamp]="{1:%s:=%s}"%(self.sBoucle[nChamp],element[nChamp])
+            else:
+              if debug: print "Champ vide",nChamp
+        for nElement, element in enumerate(exercice.conclusion):
+          if self.sConclusion[nElement] in choixMultiples:
+            self.exercices[nExercice].conclusion[nElement]="{1:%s:=%s}"%(self.sConclusion[nElement],self.getChoix(nElement,element,"conclusion"))
+          elif self.sConclusion[nElement] in choixSimples:
+            self.exercices[nExercice].conclusion[nElement]="{1:%s:=%s}"%(self.sConclusion[nElement],element)
+        exerciceCloze=[]
+        for element in consigne.getConsigne(exercice):
+          if element!="":
+            exerciceCloze.append(element)
+        exerciceSerie=ClozeExercice(exercice.titre,"\n".join(exerciceCloze))
+        result.append(exerciceSerie)
+      return result
+            
+
 class ClozeExercice:
     '''
-    Conteneur pour les éléments d'un exercice Cloze
-    '''
-    def __init__(self,titre):
-        self.titre=titre
-        self.elements=[]
-        self.exercice=[]
+    Conteneur pour un exercice Cloze
     
-    def addElement(self,element,consigne):
-        self.elements.append(element)
-        for ligne in consigne.getConsigne(*element):
-            self.exercice.append(ligne)
+    on fournit le titre et le corps de la question à insérer tout prêts
+    '''
+    def __init__(self,titre,corps):
+        self.titre=titre
+        self.corps=corps
+        exerciceStructure=[ 
+            u'<question type="cloze">',
+                u'<name><text>%s</text></name>'%self.titre,
+                u'<questiontext><text><![CDATA[%s]]></text></questiontext>'%self.corps,
+                u'<generalfeedback><text>Bien reçu.</text></generalfeedback>',
+                u'<shuffleanswers>1</shuffleanswers>',
+            u'</question>'
+            ]
+        self.forme=u"\n".join(exerciceStructure)
+
 
 class ClozeConsigne:
     '''
     Conteneur pour la consigne d'un exercice Cloze
+    
+    globalWrap donne un cadre pour l'ensemble de l'exercice qui apparaît tout
+        en haut et tout en bas
+    boucleWrap donne un cadre pour les boucles qui apparaît au début et 
+        à la fin de chaque boucle
+    conclusion donne une question sur l'ensemble avec un cadre
+    
+    consignes donne le contenu de la question des boucles
+    
+    dans consignes comme dans conclusion, les arguments sont repérés par #num#
     '''
     def __init__(self,consignes,**kwargs):
         self.boucle=consignes
@@ -67,8 +196,10 @@ class ClozeConsigne:
             self.trailerConclusion=[]
             self.conclusionWrap=False
     
-    def getConsigne(self,lignes,conclusion=""):
+    def getConsigne(self,exercice):
         result=[]
+        lignes=exercice.boucle
+        conclusion=exercice.conclusion
         if self.globalWrap:
             result.append(self.headerGlobal)
         if not isinstance(lignes,list):
@@ -80,7 +211,7 @@ class ClozeConsigne:
                 result.append(makeChamps(element,ligne))
             if self.boucleWrap:
                 result.append(self.trailerBoucle)
-        if conclusion!="" and self.conclusionWrap:
+        if conclusion and self.conclusionWrap:
             result.append(self.headerConclusion)
             for element in self.conclusion:
                 result.append(makeChamps(element,conclusion))
@@ -90,86 +221,6 @@ class ClozeConsigne:
         return result
 
 
-class MoodleClozes:
-    '''
-    Conteneur pour une série d'exercices d'une même catégorie
-    '''
-    def __init__(self,category):
-        self.category=category
-        self.exercicesChamps=[]
-        self.consigne=[]
-        self.exercices=[]
-        self.Clozes=[]
-        self.titre=""
-        self.choix={}
-    
-    def addTitre(self,titre):
-        self.titre=titre
-
-    def addTypes(self,exercicesChamps):
-        self.exercicesChamps=exercicesChamps
-
-    def addConsigne(self,consignes):
-        if isinstance(consignes,list):
-            for consigne in consignes:
-                self.consigne.append(consigne)
-        else:
-            self.consigne.append(consignes)
-    
-    def addExercice(self,exercice):
-        result=[]
-        if isinstance(exercice,list):
-            for ligne in exercice:
-                consigneLigne=[]
-                for consigne in self.consigne:
-                    consigneLigne.append(makeChamps(consigne,ligne))
-                result.append("\n".join(consigneLigne))
-                champs=ligne.split(";")
-                for index,champ in enumerate(champs):
-                    if not index in self.choix:
-                        self.choix[index]=[]
-                    self.choix[index].append(champ)
-        else:
-            consigneLigne=[]
-            for consigne in self.consigne:
-                consigneLigne.append(makeChamps(consigne,exercice))
-            result.append("\n".join(consigneLigne))
-            champs=exercice.split(";")
-            for index,champ in enumerate(champs):
-                if not index in self.choix:
-                    self.choix[index]=[]
-                self.choix[index].append(champ)
-        self.exercices.append(result)
-    
-    def getClozes(self):
-        def makeExerciceStructure(exercice):
-            nom="nom"
-            exerciceStructure=[ u'<question type="cloze">',
-                                    u'<name><text>%s</text></name>'%nom,
-                                    u'<questiontext><text><![CDATA[%s]]></text></questiontext>'%exercice,
-                                    u'<generalfeedback><text>Bien reçu.</text></generalfeedback>',
-                                    u'<shuffleanswers>1</shuffleanswers>',
-                                u'</question>'
-            ]
-            return u"\n".join(exerciceStructure)
-                
-        categoryStructure=[u'<question type="category">',
-                            u'<category>',
-                                u'<text>',
-                                    self.category,
-                                u'</text>',
-                            u'</category>',
-                        u'</question>'
-                        ]
-        result=u"\n".join(categoryStructure)
-        result+=u"\n"+u"\n".join(self.consigne)
-        for exercice in self.exercices:
-            if isinstance(exercice,list):
-                for ligne in exercice:
-                    result+=u"\n"+makeExerciceStructure(ligne)
-            else:
-                result+=u"\n"+makeExerciceStructure(exercice)
-        return result
 
 class MoodleXML:
     def __init__(self):

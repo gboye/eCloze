@@ -1,0 +1,78 @@
+#EX;la phonologie;la sémantique
+POMMIER;POMME;N;N.M;radical+je;arbre qui produit des BASES
+POMPIER;POMPE;N;N.M;radical+je;métier en rapport avec la BASE
+#EX;la sémantique;la phonologie
+POISSONIER;POISSON;N;N.M;radical+je;métier en rapport avec la BASE
+GARAGISTE;GARAGE;N;N;radical+ist;métier en rapport avec la BASE
+#EX;rien;tout
+POMPISTE;POMPE;N;N;radical+ist;métier en rapport avec la BASE
+MANGEABLE;MANGER;V;Adj;radical.IMPF+abl;qui peut être BASÉ
+#EX;rien;tout
+TRAITABLE;TRAITER;V;Adj;radical.IMPF+abl;qui peut être BASÉ
+INTRAITABLE;TRAITABLE;Adj;Adj;ɛ̃+radical;qui n'est pas BASE
+#EX;tout;rien
+IMMANGEABLE;MANGEABLE;Adj;Adj;ɛ̃+radical;qui n'est pas BASE
+INCONNU;CONNU;Adj;Adj;ɛ̃+radical;qui n'est pas BASE
+#EX;la sémantique;la phonologie
+MONTEUR;MONTER;V;N.M;radical.IMPF+œr;Agent ou Instrument de BASER
+BATTEUSE;BATTRE;V;N.F;radical.IMPF+øz;Agent ou Instrument de BASER
+#EX;rien;tout
+DRESSAGE;DRESSER;V;N.M;radical.IMPF+aʒ;action de BASER
+JARDINET;JARDIN;N.M;N.M;radical+ɛ;diminutif de BASE
+#EX;tout;rien
+MAISONNETTE;MAISON;N.F;N.F;radical+ɛt;diminutif de BASE
+CACHETTE;CACHE;N.F;N.F;radical+ɛt;diminutif de BASE
+#EX;tout;rien
+ROBUSTESSE;ROBUSTE;Adj;N.F;radical.F+ɛs;propriété d'être BASE
+TENDRESSE;TENDRE;Adj;N.F;radical.F+ɛs;propriété d'être BASE
+#EX;la sémantique;la phonologie
+PETITESSE;PETIT;Adj;N.F;radical.F+ɛs;propriété d'être BASE
+GRANDEUR;GRAND;Adj;N.F;radical.F+œr;propriété d'être BASE
+#EX;rien;tout
+HAUTEUR;HAUT;Adj;N.F;radical.F+œr;propriété d'être BASE
+OURSON;OURS;N;N.M;radical+ɔ̃;petit de BASE
+#EX;rien;tout
+GIRAFON;GIRAFE;N;N.M;radical+ɔ̃;petit de BASE
+BASKETTEUR;BASKET;N;N.M;radical+œr;sportif qui pratique la BASE
+#EX;tout;rien
+ESCRIMEUR;ESCRIME;N;N.M;radical+œr;sportif qui pratique la BASE
+POURSUITEUR;POURSUITE;N;N.M;radical+œr;sportif qui pratique la BASE
+#EX;tout;rien
+PICOTEMENT;PICOTER;V;N.M;radical.IMPF+mɑ̃;résultat de BASER
+REDRESSEMENT;REDRESSER;V;N.M;radical.IMPF+mɑ̃;résultat de BASER
+#EX;
+BANALISER;BANAL;Adj;V;radical.F+iz;rendre BASE
+#EX;
+RIGIDIFIER;RIGIDE;Adj;V;radical.F+ifi;rendre BASE
+#EX;
+BANALEMENT;BANAL;Adj;Adv;radical.F+mɑ̃;de manière BASE
+#EX;
+TARDIVEMENT;TARDIF;Adj;Adv;radical.F+mɑ̃;de manière BASE
+#EX;
+SPORTIVITÉ;SPORTIF;Adj;N.F;radical.F+ite;propriété d'être BASE
+#EX;
+LUCIDITÉ;LUCIDE;Adj;N.F;radical.F+ite;propriété d'être BASE
+#EX;
+CURISTE;CURE;N;N;radical+ist;adepte de la BASE
+#EX;
+CYCLISTE;CYCLE;N;N;radical+ist;adepte de la BASE
+#EX;
+ROUDOUDOU;DOUX;Adj;N.M;rVCVCV;diminutif de BASE
+#EX;
+POUTRELLE;POUTRE;N.F;N.F;radical+ɛl;diminutif de BASE
+#EX;
+TOURELLE;TOUR;N.F;N.F;radical+ɛl;diminutif de BASE
+#EX;
+TIGRESSE;TIGRE;N.M;N.F;radical+ɛs;équivalent femelle de BASE
+#EX;
+ÂNESSE;ÂNE;N.M;N.F;radical+ɛs;équivalent femelle de BASE
+#EX;
+MOINESSE;MOINE;N.M;N.F;radical+ɛs;équivalent femelle de BASE
+#EX;
+COURTOISIE;COURTOIS;Adj;N.F;radical.F+i;propriété d'être BASE
+#EX;
+COMPTE-TOURS;COMPTER-TOUR;V-N;N.M;radical.PRS.SG-radical;Agent ou Instrument qui VERBE les NOMS
+#EX;
+ESSUIE-GLACE;ESSUYER-GLACE;V-N;N.M;radical.PRS.SG-radical;Agent ou Instrument qui VERBE les NOMS
+#EX;
+COUVRE-LIT;COUVRIR-LIT;V-N;N.M;radical.PRS.SG-radical;Agent ou Instrument qui VERBE les NOMS

@@ -1,0 +1,19 @@
+Catégorie: Morphologie/Sens
+Global:
+    début: ""
+    fin: ""
+Boucle: 
+    Cloze: [TXT,SAC,MC,MC,MC,MC]
+    début: ""
+    contenu: 
+        - "Donnez la base et la construction correspondant au lexème #1#"
+        - "Base : #2#, Catégorie de la base : #4#, Catégorie du construit : #3#" 
+        - "Construction phonologique : #5#, Construction sémantique : #6#"
+    fin: ""
+Conclusion:
+    Cloze: [MC,MC]
+    début: ""
+    contenu:
+        - "Quel est le point commun entre ces deux constructions ? #1#"
+        - "Quelle est la différence entre ces deux constructions ? #2#"
+    fin: ""

@@ -10,7 +10,7 @@ Boucle:
         - "Base : #2#, Construction : #3#"
     fin: ""
 Conclusion:
-    Cloze: [MC,MC]
+    Cloze: [MCH,MC]
     début: ""
     contenu:
         - "Quel est le point commun entre ces deux constructions ? #1#"
@@ -27,3 +27,13 @@ Données:
             - [POIRIER,POIRE,arbre de BASE]
             - [POISSONIER,POISSON,activité en rapport avec BASE]
         conclusion: [la phonologie,la sémantique]
+    - Noms d'agent:
+        boucle:
+            - [VENDEUR,VENDRE,agent de BASE]
+            - [POISSONIER,POISSON,activité en rapport avec BASE]
+        conclusion: [la sémantique,la phonologie]
+    - Noms d'agent:
+        boucle:
+            - [BATTEUR,BATTRE,agent de BASE]
+            - [COIFFEUR,COIFFER,agent de BASE]
+        conclusion: [la sémantique et la phonologie, pas de différence]
