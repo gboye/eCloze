@@ -125,7 +125,7 @@ class ClozeSerie:
         for element in consigne.getConsigne(exercice):
           if element!="":
             exerciceCloze.append(element)
-        exerciceSerie=ClozeExercice(exercice.titre,"\n".join(exerciceCloze))
+        exerciceSerie=ClozeExercice(exercice.titre,"<br>\n".join(exerciceCloze))
         result.append(exerciceSerie)
       return result
             
