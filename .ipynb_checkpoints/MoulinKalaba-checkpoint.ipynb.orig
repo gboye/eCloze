@@ -1,7 +1,11 @@
 {
  "metadata": {
   "name": "",
+<<<<<<< HEAD
+  "signature": "sha256:dd632c20cc92f495d5ef885b9fe68f5e47e0179a04b07fe9d4d3b377e24570ca"
+=======
   "signature": "sha256:4baaa94b147b7576c38fb3ddad508df5b92b45cfb8e89f90df769477867cb55f"
+>>>>>>> master
  },
  "nbformat": 3,
  "nbformat_minor": 0,
@@ -30,60 +34,169 @@
      "language": "python",
      "metadata": {},
      "outputs": [],
+<<<<<<< HEAD
+     "prompt_number": 36
+=======
      "prompt_number": 124
+>>>>>>> master
     },
     {
      "cell_type": "code",
      "collapsed": false,
      "input": [
+<<<<<<< HEAD
+      "dossier=\"/Copy/Cours/Bordeaux/L1-UE1/Kalaba-14\"\n",
+=======
       "from os.path import expanduser\n",
       "home = expanduser(\"~\")\n",
       "repertoire=home+\"/Copy/Cours/Bordeaux/L1-UE1/Kalaba-14\"\n",
       "base=repertoire+\"/\"\n",
+>>>>>>> master
       "serie=\"Noms\""
      ],
      "language": "python",
      "metadata": {},
      "outputs": [],
+<<<<<<< HEAD
+     "prompt_number": 37
+=======
      "prompt_number": 125
+>>>>>>> master
     },
     {
      "cell_type": "code",
      "collapsed": false,
      "input": [
+<<<<<<< HEAD
+      "from os.path import expanduser\n",
+      "home = expanduser(\"~\")\n",
+      "repertoire=home+dossier\n",
+      "base=repertoire+\"/\""
+=======
       "from itertools import combinations\n",
       "import re"
+>>>>>>> master
      ],
      "language": "python",
      "metadata": {},
      "outputs": [],
+<<<<<<< HEAD
+     "prompt_number": 38
+=======
      "prompt_number": 126
+>>>>>>> master
     },
     {
      "cell_type": "code",
      "collapsed": false,
      "input": [
+<<<<<<< HEAD
+      "from itertools import combinations\n",
+      "import re"
+=======
       "marksMoodle=[100,90,80,75,70,66.666,60,50,40,33.333,30,25,20,16.666,14.2857,12.5,11.111,10,5,0]\n",
       "def noteMoodle(note):\n",
       "    return min(marksMoodle, key=lambda x:abs(x-note))"
+>>>>>>> master
      ],
      "language": "python",
      "metadata": {},
      "outputs": [],
+<<<<<<< HEAD
+     "prompt_number": 39
+=======
      "prompt_number": 127
+>>>>>>> master
     },
     {
      "cell_type": "code",
      "collapsed": false,
      "input": [
+<<<<<<< HEAD
       "marksMoodle=[100,90,80,75,70,66.666,60,50,40,33.333,30,25,20,16.666,14.2857,12.5,11.111,10,5,0]\n",
       "def noteMoodle(note):\n",
       "    return min(marksMoodle, key=lambda x:abs(x-note))"
+=======
+      "def assemblages(analyse):\n",
+      "    chunks = re.findall(ur\"(racine([^)]+)x[^+-]+|[+-]|[^-+]+)\", analyse)\n",
+      "    morceaux = [x for (x,y) in chunks if not x in [\"+\",\"-\"]]\n",
+      "    separateurs = [x for (x,y) in chunks if x in [\"+\",\"-\"]]\n",
+      "    n=len(separateurs)\n",
+      "    formes=[]\n",
+      "    formes.append(analyse)\n",
+      "    if re.search(\"^[^+]+\\+[^+]+\\+[^+]+\",analyse):\n",
+      "        formes.append(\"~%%%s%%\" % noteMoodle(100-(100*1/n))+analyse.replace(\"+\",\"-\"))\n",
+      "    for i in range(1,n):\n",
+      "        for elements in combinations(range(n),i):\n",
+      "            boolTirets=False\n",
+      "            boolRacine=False\n",
+      "            badRacine=False\n",
+      "            forme=\"~%%%s%%\" % noteMoodle(100-(100*i/n))\n",
+      "            for m,morceau in enumerate(morceaux):\n",
+      "                if re.search(\"racine([^)]+)\",morceau):\n",
+      "                    boolRacine=True\n",
+      "                    if not(re.search(\"[%+-]$\",forme)) or (m in elements):\n",
+      "                        badRacine=True\n",
+      "                forme+=morceau\n",
+      "                if not (m in elements) and m<n:\n",
+      "                    forme+=separateurs[m]\n",
+      "                    if separateurs[m] in [\"+\"]:\n",
+      "                        boolTirets=True\n",
+      "            if not(badRacine):\n",
+      "                formes.append(forme)\n",
+      "                if boolTirets:\n",
+      "                    formes.append(forme.replace('+','-'))\n",
+      "    return \"\".join(formes)"
+>>>>>>> master
      ],
      "language": "python",
      "metadata": {},
      "outputs": [],
+<<<<<<< HEAD
+     "prompt_number": 40
+    },
+    {
+     "cell_type": "code",
+     "collapsed": false,
+     "input": [
+      "def assemblages(analyse):\n",
+      "    chunks = re.findall(ur\"(racine([^)]+)x[^+-]+|[+-]|[^-+]+)\", analyse)\n",
+      "    morceaux = [x for (x,y) in chunks if not x in [\"+\",\"-\"]]\n",
+      "    separateurs = [x for (x,y) in chunks if x in [\"+\",\"-\"]]\n",
+      "    n=len(separateurs)\n",
+      "    formes=[]\n",
+      "    formes.append(analyse)\n",
+      "    if re.search(\"^[^+]+\\+[^+]+\\+[^+]+\",analyse):\n",
+      "        formes.append(\"~%%%s%%\" % noteMoodle(100-(100*1/n))+analyse.replace(\"+\",\"-\"))\n",
+      "    for i in range(1,n):\n",
+      "        for elements in combinations(range(n),i):\n",
+      "            boolTirets=False\n",
+      "            boolRacine=False\n",
+      "            badRacine=False\n",
+      "            forme=\"~%%%s%%\" % noteMoodle(100-(100*i/n))\n",
+      "            for m,morceau in enumerate(morceaux):\n",
+      "                if re.search(\"racine([^)]+)\",morceau):\n",
+      "                    boolRacine=True\n",
+      "                    if not(re.search(\"[%+-]$\",forme)) or (m in elements):\n",
+      "                        badRacine=True\n",
+      "                forme+=morceau\n",
+      "                if not (m in elements) and m<n:\n",
+      "                    forme+=separateurs[m]\n",
+      "                    if separateurs[m] in [\"+\"]:\n",
+      "                        boolTirets=True\n",
+      "            if not(badRacine):\n",
+      "                formes.append(forme)\n",
+      "                if boolTirets:\n",
+      "                    formes.append(forme.replace('+','-'))\n",
+      "    return \"\".join(formes)"
+     ],
+     "language": "python",
+     "metadata": {},
+     "outputs": [],
+     "prompt_number": 41
+=======
      "prompt_number": 128
+>>>>>>> master
     },
     {
      "cell_type": "code",
@@ -107,7 +220,11 @@
      "language": "python",
      "metadata": {},
      "outputs": [],
+<<<<<<< HEAD
+     "prompt_number": 42
+=======
      "prompt_number": 129
+>>>>>>> master
     },
     {
      "cell_type": "code",
@@ -124,25 +241,43 @@
      "language": "python",
      "metadata": {},
      "outputs": [],
+<<<<<<< HEAD
+     "prompt_number": 43
+=======
      "prompt_number": 130
+>>>>>>> master
     },
     {
      "cell_type": "code",
      "collapsed": false,
      "input": [
+<<<<<<< HEAD
+      "nomCSV=base+\"14-Kalaba-\"+serie+\".csv\"\n",
+      "with open(nomCSV, 'r') as file:\n",
+=======
       "with open(base+\"14-Kalaba-\"+serie+\".csv\", 'r') as file:\n",
+>>>>>>> master
       "    donnees=file.readlines()"
      ],
      "language": "python",
      "metadata": {},
      "outputs": [],
+<<<<<<< HEAD
+     "prompt_number": 44
+=======
      "prompt_number": 131
+>>>>>>> master
     },
     {
      "cell_type": "code",
      "collapsed": false,
      "input": [
+<<<<<<< HEAD
+      "nomPhonology=base+\"Phonology.yaml\"\n",
+      "with open(nomPhonology, 'r') as stream:\n",
+=======
       "with open(base+\"Phonology.yaml\", 'r') as stream:\n",
+>>>>>>> master
       "    phonology=yaml.load(stream)\n",
       "tipaIn = unicode(phonology[\"translations\"][\"ipa\"][\"in\"])\n",
       "ipaIn = [ord(char) for char in tipaIn]\n",
@@ -152,7 +287,11 @@
      "language": "python",
      "metadata": {},
      "outputs": [],
+<<<<<<< HEAD
+     "prompt_number": 45
+=======
      "prompt_number": 132
+>>>>>>> master
     },
     {
      "cell_type": "code",
@@ -166,29 +305,50 @@
       "        champs=donnee.strip().split(\";\")\n",
       "        champs[2]=recoder(champs[2],toipa)\n",
       "        champs[3]=recoder(champs[3],toipa)\n",
+<<<<<<< HEAD
+      "#        morceaux=champs[3].split(\"-\")\n",
+      "#        numMorceaux=str(len(morceaux))\n",
+      "        numMorceaux=str(champs[3].count(\"-\")+champs[3].count(\"+\")/2+1)\n",
+      "        champs[3]=assemblages(champs[3])\n",
+      "        champs.insert(3,numMorceaux)\n",
+=======
       "        morceaux=champs[3].split(\"-\")\n",
       "        numMorceaux=str(len(morceaux))\n",
       "        champs[3]=assemblages(champs[3])\n",
       "        champs.append(numMorceaux)\n",
+>>>>>>> master
       "        results.append(\";\".join(champs))"
      ],
      "language": "python",
      "metadata": {},
      "outputs": [],
+<<<<<<< HEAD
+     "prompt_number": 46
+=======
      "prompt_number": 133
+>>>>>>> master
     },
     {
      "cell_type": "code",
      "collapsed": false,
      "input": [
+<<<<<<< HEAD
+      "nomTXT=nomCSV.replace(\".csv\",\".txt\")\n",
+      "with open(nomTXT, 'w') as file:\n",
+=======
       "with open(base+\"14-Kalaba-\"+serie+\".txt\", 'w') as file:\n",
+>>>>>>> master
       "    for result in results:\n",
       "        file.write(result+\"\\n\")"
      ],
      "language": "python",
      "metadata": {},
      "outputs": [],
+<<<<<<< HEAD
+     "prompt_number": 47
+=======
      "prompt_number": 134
+>>>>>>> master
     },
     {
      "cell_type": "code",
@@ -197,7 +357,11 @@
      "language": "python",
      "metadata": {},
      "outputs": [],
+<<<<<<< HEAD
+     "prompt_number": 47
+=======
      "prompt_number": 134
+>>>>>>> master
     }
    ],
    "metadata": {}
