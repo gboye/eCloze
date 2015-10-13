@@ -1,262 +1,11 @@
 {
-<<<<<<< HEAD
- "cells": [
-  {
-   "cell_type": "code",
-   "execution_count": 388,
-   "metadata": {
-    "collapsed": false
-   },
-   "outputs": [],
-   "source": [
-    "#import re\n",
-    "import sys, codecs, optparse, glob, os\n",
-    "import string\n",
-    "import random"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 389,
-   "metadata": {
-    "collapsed": false
-   },
-   "outputs": [],
-   "source": [
-    "dossier=\"/Copy/Cours/Bordeaux/L1-UE1/Kalaba-15/03-Decoupages\"\n",
-    "enonce=\"Version\"\n",
-    "theme=\"Traductions\""
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 390,
-   "metadata": {
-    "collapsed": false
-   },
-   "outputs": [],
-   "source": [
-    "from os.path import expanduser\n",
-    "home = expanduser(\"~\")\n",
-    "repertoire=home+dossier\n",
-    "base=repertoire+\"/\""
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 391,
-   "metadata": {
-    "collapsed": false
-   },
-   "outputs": [],
-   "source": [
-    "from MoodleXML import *\n",
-    "import yaml"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 392,
-   "metadata": {
-    "collapsed": false
-   },
-   "outputs": [],
-   "source": [
-    "yamlFichier=base+theme+\"-\"+enonce+\".yaml\"\n",
-    "csvFichier=base+theme+\".txt\"\n",
-    "boolEX=False\n",
-    "titreNoEX=False"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 393,
-   "metadata": {
-    "collapsed": false
-   },
-   "outputs": [],
-   "source": [
-    "with open(yamlFichier, 'r') as stream:\n",
-    "    configuration=yaml.load(stream)\n",
-    "    \n",
-    "with open(csvFichier, 'r') as file:\n",
-    "    donneesLignes=file.readlines()"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 394,
-   "metadata": {
-    "collapsed": false
-   },
-   "outputs": [],
-   "source": [
-    "def donneesEX():\n",
-    "    titre=[]\n",
-    "    result=\"\"\n",
-    "    i=0\n",
-    "    for ligne in donneesLignes:\n",
-    "        i+=1\n",
-    "        if ligne.startswith(\"#EX;\"):\n",
-    "            if result!=\"\":\n",
-    "                donnees.append({\"-\".join(titre):result})\n",
-    "            titre=[]\n",
-    "            result={\"boucle\":[],\"conclusion\":[]}\n",
-    "            temp=ligne.strip().split(\";\")\n",
-    "            if len(temp)>1 and temp[1]!=\"\":\n",
-    "                result[\"conclusion\"]=temp[1:]\n",
-    "        elif ligne.startswith(\"#\"):\n",
-    "            pass\n",
-    "        else:\n",
-    "            temp=ligne.strip().split(\";\")\n",
-    "            result[\"boucle\"].append(temp)\n",
-    "            titre.append(makeChamps(configuration[u\"Titre\"],temp).encode('utf8'))\n",
-    "    donnees.append({\"-\".join(titre):result})\n",
-    "\n",
-    "def donneesNoEX():\n",
-    "    if titreNoEX:\n",
-    "        debut=1\n",
-    "    else:\n",
-    "        debut=0\n",
-    "    for ligne in donneesLignes[debut:]:\n",
-    "        if not (ligne.strip().strip(\";\")==\"\" or ligne.startswith(\"#\")):\n",
-    "            temp=ligne.strip().split(\";\")\n",
-    "            result={\"boucle\":[temp],\"conclusion\":[]}\n",
-    "            titre=makeChamps(configuration[u\"Titre\"],temp).encode('utf8')\n",
-    "            donnees.append({titre:result})\n",
-    "    return\n",
-    "\n",
-    "donnees=[]\n",
-    "if boolEX or donneesLignes[0].startswith(\"#EX;\"):\n",
-    "#    print \"avec #EX;\"\n",
-    "    donneesEX()\n",
-    "else:\n",
-    "#    print \"sans #EX;\"\n",
-    "    donneesNoEX()"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 395,
-   "metadata": {
-    "collapsed": false
-   },
-   "outputs": [],
-   "source": [
-    "categorie=configuration[u\"Catégorie\"]\n",
-    "#donnees=configuration[u\"Données\"]\n",
-    "consigne=configuration[u\"Boucle\"][u\"contenu\"]\n",
-    "boucleWrap=[configuration[u\"Boucle\"][u\"début\"],configuration[u\"Boucle\"][\"fin\"]]\n",
-    "boucleCLOZE=configuration[u\"Boucle\"][u\"Cloze\"]\n",
-    "globalWrap=[configuration[u\"Global\"][u\"début\"],configuration[u\"Global\"][\"fin\"]]\n",
-    "if \"Conclusion\" in configuration:\n",
-    "    conclusion=[configuration[u\"Conclusion\"][u\"début\"],configuration[u\"Conclusion\"][\"contenu\"],configuration[u\"Conclusion\"][\"fin\"]]\n",
-    "    conclusionCLOZE=configuration[u\"Conclusion\"][u\"Cloze\"]\n",
-    "else:\n",
-    "    conclusion=[\"\",\"\",\"\"]\n",
-    "    conclusionCLOZE=[]\n",
-    "questions=XMLClozes(categorie)\n",
-    "questionsConsigne=ClozeConsigne(consigne,boucleWrap=boucleWrap,globalWrap=globalWrap,conclusion=conclusion)\n",
-    "serie=ClozeSerie(configuration[u\"Boucle\"][u\"Cloze\"],conclusionCLOZE)"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 396,
-   "metadata": {
-    "collapsed": false
-   },
-   "outputs": [],
-   "source": [
-    "for exercices in donnees:\n",
-    "#    print \"exercices\",exercices\n",
-    "    for exercice in exercices:\n",
-    "#        print \"exercice\",exercice\n",
-    "        exerciceBoucle=exercices[exercice][\"boucle\"]\n",
-    "        exerciceConclusion=exercices[exercice][\"conclusion\"]\n",
-    "        serie.addExercice(Exercice(exerciceBoucle,exerciceConclusion,exercice.decode('utf8')))"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 397,
-   "metadata": {
-    "collapsed": false
-   },
-   "outputs": [],
-   "source": [
-    "for exercice in serie.makeSerie(questionsConsigne):\n",
-    "#    print exercice.corps\n",
-    "    questions.addExercice(exercice)"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 398,
-   "metadata": {
-    "collapsed": false
-   },
-   "outputs": [],
-   "source": [
-    "xmlOutput=MoodleXML()\n",
-    "xmlOutput.addQuiz(questions.getClozes())"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 399,
-   "metadata": {
-    "collapsed": false
-   },
-   "outputs": [],
-   "source": [
-    "xmlFichier=yamlFichier.split(\".\")[0]+\".xml\""
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 400,
-   "metadata": {
-    "collapsed": false
-   },
-   "outputs": [],
-   "source": [
-    "with codecs.open(xmlFichier, 'w',encoding=\"utf8\") as output:\n",
-    "#    print [questions.getClozes()]\n",
-    "    output.write(xmlOutput.getXML())"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "metadata": {
-    "collapsed": false
-   },
-   "outputs": [],
-   "source": []
-  }
- ],
- "metadata": {
-  "kernelspec": {
-   "display_name": "Python 2",
-   "language": "python",
-   "name": "python2"
-  },
-  "language_info": {
-   "codemirror_mode": {
-    "name": "ipython",
-    "version": 2
-   },
-   "file_extension": ".py",
-   "mimetype": "text/x-python",
-   "name": "python",
-   "nbconvert_exporter": "python",
-   "pygments_lexer": "ipython2",
-   "version": "2.7.10"
-=======
  "metadata": {
   "name": "",
-  "signature": "sha256:66f7e17b054e9ed0b6c6dd1881bbf830f2e8a80bfd80e9ec34f3ddae7d3f77ac"
+<<<<<<< HEAD
+  "signature": "sha256:114a39dc4374fe8502706109a0bab4ba2ced994ccc7113f9fe5844fd1e6571fe"
+=======
+  "signature": "sha256:82b09d3c9430ae13613c40002687e37a958584ed4be3603ccaf1fcb6f2f3dec3"
+>>>>>>> FETCH_HEAD
  },
  "nbformat": 3,
  "nbformat_minor": 0,
@@ -274,35 +23,8 @@
      ],
      "language": "python",
      "metadata": {},
-     "outputs": []
-    },
-    {
-     "cell_type": "code",
-     "collapsed": false,
-     "input": [
-      "marksMoodle=[100,90,80,75,70,66.666,60,50,40,33.333,30,25,20,16.666,14.2857,12.5,11.111,10,5,0]\n",
-      "def noteMoodle(note):\n",
-      "    return min(marksMoodle, key=lambda x:abs(x-note))"
-     ],
-     "language": "python",
-     "metadata": {},
      "outputs": [],
-     "prompt_number": 106
-    },
-    {
-     "cell_type": "code",
-     "collapsed": false,
-     "input": [
-      "from os.path import expanduser\n",
-      "home = expanduser(\"~\")\n",
-      "repertoire=home+\"/Copy/Cours/Bordeaux/L1-UE1/Kalaba-14\"\n",
-      "base=repertoire+\"/\"\n",
-      "serie=\"Adjectifs\""
-     ],
-     "language": "python",
-     "metadata": {},
-     "outputs": [],
-     "prompt_number": 38
+     "prompt_number": 1
     },
     {
      "cell_type": "code",
@@ -314,87 +36,426 @@
      "language": "python",
      "metadata": {},
      "outputs": [],
-     "prompt_number": 39
+     "prompt_number": 2
     },
     {
      "cell_type": "code",
      "collapsed": false,
      "input": [
-      "yamlFichier=base+\"EXO2-14-Kalaba-\"+serie+\".yaml\"\n",
-      "csvFichier=base+\"14-Kalaba-\"+serie+\".txt\"\n",
-      "boolEX=False\n",
-      "titreNoEX=True"
-     ],
-     "language": "python",
-     "metadata": {},
-     "outputs": [],
-     "prompt_number": 40
-    },
-    {
-     "cell_type": "code",
-     "collapsed": false,
-     "input": [
-      "with open(yamlFichier, 'r') as stream:\n",
+      "with open(\"EXO2-Morpho.yaml\", 'r') as stream:\n",
       "    configuration=yaml.load(stream)\n",
       "    \n",
-      "with open(csvFichier, 'r') as file:\n",
+      "with open(\"EXO2-Morpho.txt\", 'r') as file:\n",
       "    donneesLignes=file.readlines()"
      ],
      "language": "python",
      "metadata": {},
      "outputs": [],
-     "prompt_number": 41
+     "prompt_number": 3
     },
     {
      "cell_type": "code",
      "collapsed": false,
      "input": [
-      "def donneesEX():\n",
-      "    titre=[]\n",
-      "    result=\"\"\n",
-      "    i=0\n",
-      "    for ligne in donneesLignes:\n",
-      "        i+=1\n",
-      "        if ligne.startswith(\"#EX;\"):\n",
-      "            if result!=\"\":\n",
-      "                donnees.append({\"-\".join(titre):result})\n",
-      "            titre=[]\n",
-      "            result={\"boucle\":[],\"conclusion\":[]}\n",
-      "            temp=ligne.strip().split(\";\")\n",
-      "            if len(temp)>1 and temp[1]!=\"\":\n",
-      "                result[\"conclusion\"]=temp[1:]\n",
-      "        elif ligne.startswith(\"#\"):\n",
-      "            pass\n",
-      "        else:\n",
-      "            temp=ligne.strip().split(\";\")\n",
-      "            result[\"boucle\"].append(temp)\n",
-      "            titre.append(makeChamps(configuration[u\"Titre\"],temp).encode('utf8'))\n",
-      "    donnees.append({\"-\".join(titre):result})\n",
-      "\n",
-      "def donneesNoEX():\n",
-      "    if titreNoEX:\n",
-      "        debut=1\n",
-      "    else:\n",
-      "        debut=0\n",
-      "    for ligne in donneesLignes[debut:]:\n",
-      "        if not (ligne.strip().strip(\";\")==\"\" or ligne.startswith(\"#\")):\n",
-      "            temp=ligne.strip().split(\";\")\n",
-      "            result={\"boucle\":[temp],\"conclusion\":[]}\n",
-      "            titre=makeChamps(configuration[u\"Titre\"],temp).encode('utf8')\n",
-      "            donnees.append({titre:result})\n",
-      "\n",
       "donnees=[]\n",
-      "if boolEX or donneesLignes[0].startswith(\"#EX;\"):\n",
-      "#    print \"avec #EX;\"\n",
-      "    donneesEX()\n",
-      "else:\n",
-      "#    print \"sans #EX;\"\n",
-      "    donneesNoEX()"
+      "titre=[]\n",
+      "i=0\n",
+      "for ligne in donneesLignes:\n",
+      "    i+=1\n",
+      "    if ligne.startswith(\"#EX;\"):\n",
+      "        try:\n",
+      "            donnees.append({\"-\".join(titre):result})\n",
+      "        except:\n",
+      "            print \"PB\",ligne\n",
+      "        titre=[]\n",
+      "        result={\"boucle\":[],\"conclusion\":[]}\n",
+      "        temp=ligne.strip().split(\";\")\n",
+      "        if len(temp)>1 and temp[1]!=\"\":\n",
+      "            result[\"conclusion\"]=temp[1:]\n",
+      "    elif ligne.startswith(\"#\"):\n",
+      "        pass\n",
+      "    else:\n",
+      "        temp=ligne.strip().split(\";\")\n",
+      "        result[\"boucle\"].append(temp)\n",
+      "        titre.append(temp[0])\n",
+      "        print titre\n",
+      "print i\n",
+      "#donnees.append({\"-\".join(titre):result})\n",
+      "        \n",
+      "donnees"
      ],
      "language": "python",
      "metadata": {},
+<<<<<<< HEAD
+     "outputs": [
+      {
+       "output_type": "stream",
+       "stream": "stdout",
+       "text": [
+        "PB #EX;la phonologie;la s\u00e9mantique\n",
+        "\n",
+        "['POMMIER']\n",
+        "['POMMIER', 'POMPIER']\n",
+        "['POISSONIER']\n",
+        "['POISSONIER', 'GARAGISTE']\n",
+        "['POMPISTE']\n",
+        "['POMPISTE', 'MANGEABLE']\n",
+        "['TRAITABLE']\n",
+        "['TRAITABLE', 'INTRAITABLE']\n",
+        "['IMMANGEABLE']\n",
+        "['IMMANGEABLE', 'INCONNU']\n",
+        "['MONTEUR']\n",
+        "['MONTEUR', 'BATTEUSE']\n",
+        "['DRESSAGE']\n",
+        "['DRESSAGE', 'JARDINET']\n",
+        "['MAISONNETTE']\n",
+        "['MAISONNETTE', 'CACHETTE']\n",
+        "['ROBUSTESSE']\n",
+        "['ROBUSTESSE', 'TENDRESSE']\n",
+        "['PETITESSE']\n",
+        "['PETITESSE', 'GRANDEUR']\n",
+        "['HAUTEUR']\n",
+        "['HAUTEUR', 'OURSON']\n",
+        "['GIRAFON']\n",
+        "['GIRAFON', 'BASKETTEUR']\n",
+        "['ESCRIMEUR']\n",
+        "['ESCRIMEUR', 'POURSUITEUR']\n",
+        "['PICOTEMENT']\n",
+        "['PICOTEMENT', 'REDRESSEMENT']\n",
+        "['BANALISER']\n",
+        "['RIGIDIFIER']\n",
+        "['BANALEMENT']\n",
+        "['TARDIVEMENT']\n",
+        "['SPORTIVIT\\xc3\\x89']\n",
+        "['LUCIDIT\\xc3\\x89']\n",
+        "['CURISTE']\n",
+        "['CYCLISTE']\n",
+        "['ROUDOUDOU']\n",
+        "['POUTRELLE']\n",
+        "['TOURELLE']\n",
+        "['TIGRESSE']\n",
+        "['\\xc3\\x82NESSE']\n",
+        "['MOINESSE']\n",
+        "['COURTOISIE']\n",
+        "['COMPTE-TOURS']\n",
+        "['ESSUIE-GLACE']\n",
+        "['COUVRE-LIT']\n",
+        "78\n"
+       ]
+      },
+      {
+       "metadata": {},
+       "output_type": "pyout",
+       "prompt_number": 4,
+       "text": [
+        "[{'POMMIER-POMPIER': {'boucle': [['POMMIER',\n",
+        "     'POMME',\n",
+        "     'N',\n",
+        "     'N.M',\n",
+        "     'radical+je',\n",
+        "     'arbre qui produit des BASES'],\n",
+        "    ['POMPIER',\n",
+        "     'POMPE',\n",
+        "     'N',\n",
+        "     'N.M',\n",
+        "     'radical+je',\n",
+        "     'm\\xc3\\xa9tier en rapport avec la BASE']],\n",
+        "   'conclusion': ['la phonologie', 'la s\\xc3\\xa9mantique']}},\n",
+        " {'POISSONIER-GARAGISTE': {'boucle': [['POISSONIER',\n",
+        "     'POISSON',\n",
+        "     'N',\n",
+        "     'N.M',\n",
+        "     'radical+je',\n",
+        "     'm\\xc3\\xa9tier en rapport avec la BASE'],\n",
+        "    ['GARAGISTE',\n",
+        "     'GARAGE',\n",
+        "     'N',\n",
+        "     'N',\n",
+        "     'radical+ist',\n",
+        "     'm\\xc3\\xa9tier en rapport avec la BASE']],\n",
+        "   'conclusion': ['la s\\xc3\\xa9mantique', 'la phonologie']}},\n",
+        " {'POMPISTE-MANGEABLE': {'boucle': [['POMPISTE',\n",
+        "     'POMPE',\n",
+        "     'N',\n",
+        "     'N',\n",
+        "     'radical+ist',\n",
+        "     'm\\xc3\\xa9tier en rapport avec la BASE'],\n",
+        "    ['MANGEABLE',\n",
+        "     'MANGER',\n",
+        "     'V',\n",
+        "     'Adj',\n",
+        "     'radical.IMPF+abl',\n",
+        "     'qui peut \\xc3\\xaatre BAS\\xc3\\x89']],\n",
+        "   'conclusion': ['rien', 'tout']}},\n",
+        " {'TRAITABLE-INTRAITABLE': {'boucle': [['TRAITABLE',\n",
+        "     'TRAITER',\n",
+        "     'V',\n",
+        "     'Adj',\n",
+        "     'radical.IMPF+abl',\n",
+        "     'qui peut \\xc3\\xaatre BAS\\xc3\\x89'],\n",
+        "    ['INTRAITABLE',\n",
+        "     'TRAITABLE',\n",
+        "     'Adj',\n",
+        "     'Adj',\n",
+        "     '\\xc9\\x9b\\xcc\\x83+radical',\n",
+        "     \"qui n'est pas BASE\"]],\n",
+        "   'conclusion': ['rien', 'tout']}},\n",
+        " {'IMMANGEABLE-INCONNU': {'boucle': [['IMMANGEABLE',\n",
+        "     'MANGEABLE',\n",
+        "     'Adj',\n",
+        "     'Adj',\n",
+        "     '\\xc9\\x9b\\xcc\\x83+radical',\n",
+        "     \"qui n'est pas BASE\"],\n",
+        "    ['INCONNU',\n",
+        "     'CONNU',\n",
+        "     'Adj',\n",
+        "     'Adj',\n",
+        "     '\\xc9\\x9b\\xcc\\x83+radical',\n",
+        "     \"qui n'est pas BASE\"]],\n",
+        "   'conclusion': ['tout', 'rien']}},\n",
+        " {'MONTEUR-BATTEUSE': {'boucle': [['MONTEUR',\n",
+        "     'MONTER',\n",
+        "     'V',\n",
+        "     'N.M',\n",
+        "     'radical.IMPF+\\xc5\\x93r',\n",
+        "     'Agent ou Instrument de BASER'],\n",
+        "    ['BATTEUSE',\n",
+        "     'BATTRE',\n",
+        "     'V',\n",
+        "     'N.F',\n",
+        "     'radical.IMPF+\\xc3\\xb8z',\n",
+        "     'Agent ou Instrument de BASER']],\n",
+        "   'conclusion': ['la s\\xc3\\xa9mantique', 'la phonologie']}},\n",
+        " {'DRESSAGE-JARDINET': {'boucle': [['DRESSAGE',\n",
+        "     'DRESSER',\n",
+        "     'V',\n",
+        "     'N.M',\n",
+        "     'radical.IMPF+a\\xca\\x92',\n",
+        "     'action de BASER'],\n",
+        "    ['JARDINET',\n",
+        "     'JARDIN',\n",
+        "     'N.M',\n",
+        "     'N.M',\n",
+        "     'radical+\\xc9\\x9b',\n",
+        "     'diminutif de BASE']],\n",
+        "   'conclusion': ['rien', 'tout']}},\n",
+        " {'MAISONNETTE-CACHETTE': {'boucle': [['MAISONNETTE',\n",
+        "     'MAISON',\n",
+        "     'N.F',\n",
+        "     'N.F',\n",
+        "     'radical+\\xc9\\x9bt',\n",
+        "     'diminutif de BASE'],\n",
+        "    ['CACHETTE',\n",
+        "     'CACHE',\n",
+        "     'N.F',\n",
+        "     'N.F',\n",
+        "     'radical+\\xc9\\x9bt',\n",
+        "     'diminutif de BASE']],\n",
+        "   'conclusion': ['tout', 'rien']}},\n",
+        " {'ROBUSTESSE-TENDRESSE': {'boucle': [['ROBUSTESSE',\n",
+        "     'ROBUSTE',\n",
+        "     'Adj',\n",
+        "     'N.F',\n",
+        "     'radical.F+\\xc9\\x9bs',\n",
+        "     \"propri\\xc3\\xa9t\\xc3\\xa9 d'\\xc3\\xaatre BASE\"],\n",
+        "    ['TENDRESSE',\n",
+        "     'TENDRE',\n",
+        "     'Adj',\n",
+        "     'N.F',\n",
+        "     'radical.F+\\xc9\\x9bs',\n",
+        "     \"propri\\xc3\\xa9t\\xc3\\xa9 d'\\xc3\\xaatre BASE\"]],\n",
+        "   'conclusion': ['tout', 'rien']}},\n",
+        " {'PETITESSE-GRANDEUR': {'boucle': [['PETITESSE',\n",
+        "     'PETIT',\n",
+        "     'Adj',\n",
+        "     'N.F',\n",
+        "     'radical.F+\\xc9\\x9bs',\n",
+        "     \"propri\\xc3\\xa9t\\xc3\\xa9 d'\\xc3\\xaatre BASE\"],\n",
+        "    ['GRANDEUR',\n",
+        "     'GRAND',\n",
+        "     'Adj',\n",
+        "     'N.F',\n",
+        "     'radical.F+\\xc5\\x93r',\n",
+        "     \"propri\\xc3\\xa9t\\xc3\\xa9 d'\\xc3\\xaatre BASE\"]],\n",
+        "   'conclusion': ['la s\\xc3\\xa9mantique', 'la phonologie']}},\n",
+        " {'HAUTEUR-OURSON': {'boucle': [['HAUTEUR',\n",
+        "     'HAUT',\n",
+        "     'Adj',\n",
+        "     'N.F',\n",
+        "     'radical.F+\\xc5\\x93r',\n",
+        "     \"propri\\xc3\\xa9t\\xc3\\xa9 d'\\xc3\\xaatre BASE\"],\n",
+        "    ['OURSON',\n",
+        "     'OURS',\n",
+        "     'N',\n",
+        "     'N.M',\n",
+        "     'radical+\\xc9\\x94\\xcc\\x83',\n",
+        "     'petit de BASE']],\n",
+        "   'conclusion': ['rien', 'tout']}},\n",
+        " {'GIRAFON-BASKETTEUR': {'boucle': [['GIRAFON',\n",
+        "     'GIRAFE',\n",
+        "     'N',\n",
+        "     'N.M',\n",
+        "     'radical+\\xc9\\x94\\xcc\\x83',\n",
+        "     'petit de BASE'],\n",
+        "    ['BASKETTEUR',\n",
+        "     'BASKET',\n",
+        "     'N',\n",
+        "     'N.M',\n",
+        "     'radical+\\xc5\\x93r',\n",
+        "     'sportif qui pratique la BASE']],\n",
+        "   'conclusion': ['rien', 'tout']}},\n",
+        " {'ESCRIMEUR-POURSUITEUR': {'boucle': [['ESCRIMEUR',\n",
+        "     'ESCRIME',\n",
+        "     'N',\n",
+        "     'N.M',\n",
+        "     'radical+\\xc5\\x93r',\n",
+        "     'sportif qui pratique la BASE'],\n",
+        "    ['POURSUITEUR',\n",
+        "     'POURSUITE',\n",
+        "     'N',\n",
+        "     'N.M',\n",
+        "     'radical+\\xc5\\x93r',\n",
+        "     'sportif qui pratique la BASE']],\n",
+        "   'conclusion': ['tout', 'rien']}},\n",
+        " {'PICOTEMENT-REDRESSEMENT': {'boucle': [['PICOTEMENT',\n",
+        "     'PICOTER',\n",
+        "     'V',\n",
+        "     'N.M',\n",
+        "     'radical.IMPF+m\\xc9\\x91\\xcc\\x83',\n",
+        "     'r\\xc3\\xa9sultat de BASER'],\n",
+        "    ['REDRESSEMENT',\n",
+        "     'REDRESSER',\n",
+        "     'V',\n",
+        "     'N.M',\n",
+        "     'radical.IMPF+m\\xc9\\x91\\xcc\\x83',\n",
+        "     'r\\xc3\\xa9sultat de BASER']],\n",
+        "   'conclusion': ['tout', 'rien']}},\n",
+        " {'BANALISER': {'boucle': [['BANALISER',\n",
+        "     'BANAL',\n",
+        "     'Adj',\n",
+        "     'V',\n",
+        "     'radical.F+iz',\n",
+        "     'rendre BASE']],\n",
+        "   'conclusion': []}},\n",
+        " {'RIGIDIFIER': {'boucle': [['RIGIDIFIER',\n",
+        "     'RIGIDE',\n",
+        "     'Adj',\n",
+        "     'V',\n",
+        "     'radical.F+ifi',\n",
+        "     'rendre BASE']],\n",
+        "   'conclusion': []}},\n",
+        " {'BANALEMENT': {'boucle': [['BANALEMENT',\n",
+        "     'BANAL',\n",
+        "     'Adj',\n",
+        "     'Adv',\n",
+        "     'radical.F+m\\xc9\\x91\\xcc\\x83',\n",
+        "     'de mani\\xc3\\xa8re BASE']],\n",
+        "   'conclusion': []}},\n",
+        " {'TARDIVEMENT': {'boucle': [['TARDIVEMENT',\n",
+        "     'TARDIF',\n",
+        "     'Adj',\n",
+        "     'Adv',\n",
+        "     'radical.F+m\\xc9\\x91\\xcc\\x83',\n",
+        "     'de mani\\xc3\\xa8re BASE']],\n",
+        "   'conclusion': []}},\n",
+        " {'SPORTIVIT\\xc3\\x89': {'boucle': [['SPORTIVIT\\xc3\\x89',\n",
+        "     'SPORTIF',\n",
+        "     'Adj',\n",
+        "     'N.F',\n",
+        "     'radical.F+ite',\n",
+        "     \"propri\\xc3\\xa9t\\xc3\\xa9 d'\\xc3\\xaatre BASE\"]],\n",
+        "   'conclusion': []}},\n",
+        " {'LUCIDIT\\xc3\\x89': {'boucle': [['LUCIDIT\\xc3\\x89',\n",
+        "     'LUCIDE',\n",
+        "     'Adj',\n",
+        "     'N.F',\n",
+        "     'radical.F+ite',\n",
+        "     \"propri\\xc3\\xa9t\\xc3\\xa9 d'\\xc3\\xaatre BASE\"]],\n",
+        "   'conclusion': []}},\n",
+        " {'CURISTE': {'boucle': [['CURISTE',\n",
+        "     'CURE',\n",
+        "     'N',\n",
+        "     'N',\n",
+        "     'radical+ist',\n",
+        "     'adepte de la BASE']],\n",
+        "   'conclusion': []}},\n",
+        " {'CYCLISTE': {'boucle': [['CYCLISTE',\n",
+        "     'CYCLE',\n",
+        "     'N',\n",
+        "     'N',\n",
+        "     'radical+ist',\n",
+        "     'adepte de la BASE']],\n",
+        "   'conclusion': []}},\n",
+        " {'ROUDOUDOU': {'boucle': [['ROUDOUDOU',\n",
+        "     'DOUX',\n",
+        "     'Adj',\n",
+        "     'N.M',\n",
+        "     'rVCVCV',\n",
+        "     'diminutif de BASE']],\n",
+        "   'conclusion': []}},\n",
+        " {'POUTRELLE': {'boucle': [['POUTRELLE',\n",
+        "     'POUTRE',\n",
+        "     'N.F',\n",
+        "     'N.F',\n",
+        "     'radical+\\xc9\\x9bl',\n",
+        "     'diminutif de BASE']],\n",
+        "   'conclusion': []}},\n",
+        " {'TOURELLE': {'boucle': [['TOURELLE',\n",
+        "     'TOUR',\n",
+        "     'N.F',\n",
+        "     'N.F',\n",
+        "     'radical+\\xc9\\x9bl',\n",
+        "     'diminutif de BASE']],\n",
+        "   'conclusion': []}},\n",
+        " {'TIGRESSE': {'boucle': [['TIGRESSE',\n",
+        "     'TIGRE',\n",
+        "     'N.M',\n",
+        "     'N.F',\n",
+        "     'radical+\\xc9\\x9bs',\n",
+        "     '\\xc3\\xa9quivalent femelle de BASE']],\n",
+        "   'conclusion': []}},\n",
+        " {'\\xc3\\x82NESSE': {'boucle': [['\\xc3\\x82NESSE',\n",
+        "     '\\xc3\\x82NE',\n",
+        "     'N.M',\n",
+        "     'N.F',\n",
+        "     'radical+\\xc9\\x9bs',\n",
+        "     '\\xc3\\xa9quivalent femelle de BASE']],\n",
+        "   'conclusion': []}},\n",
+        " {'MOINESSE': {'boucle': [['MOINESSE',\n",
+        "     'MOINE',\n",
+        "     'N.M',\n",
+        "     'N.F',\n",
+        "     'radical+\\xc9\\x9bs',\n",
+        "     '\\xc3\\xa9quivalent femelle de BASE']],\n",
+        "   'conclusion': []}},\n",
+        " {'COURTOISIE': {'boucle': [['COURTOISIE',\n",
+        "     'COURTOIS',\n",
+        "     'Adj',\n",
+        "     'N.F',\n",
+        "     'radical.F+i',\n",
+        "     \"propri\\xc3\\xa9t\\xc3\\xa9 d'\\xc3\\xaatre BASE\"]],\n",
+        "   'conclusion': []}},\n",
+        " {'COMPTE-TOURS': {'boucle': [['COMPTE-TOURS',\n",
+        "     'COMPTER-TOUR',\n",
+        "     'V-N',\n",
+        "     'N.M',\n",
+        "     'radical.PRS.SG-radical',\n",
+        "     'Agent ou Instrument qui VERBE les NOMS']],\n",
+        "   'conclusion': []}},\n",
+        " {'ESSUIE-GLACE': {'boucle': [['ESSUIE-GLACE',\n",
+        "     'ESSUYER-GLACE',\n",
+        "     'V-N',\n",
+        "     'N.M',\n",
+        "     'radical.PRS.SG-radical',\n",
+        "     'Agent ou Instrument qui VERBE les NOMS']],\n",
+        "   'conclusion': []}}]"
+       ]
+      }
+     ],
+=======
      "outputs": [],
-     "prompt_number": 42
+>>>>>>> FETCH_HEAD
+     "prompt_number": 4
     },
     {
      "cell_type": "code",
@@ -406,91 +467,171 @@
       "boucleWrap=[configuration[u\"Boucle\"][u\"d\u00e9but\"],configuration[u\"Boucle\"][\"fin\"]]\n",
       "boucleCLOZE=configuration[u\"Boucle\"][u\"Cloze\"]\n",
       "globalWrap=[configuration[u\"Global\"][u\"d\u00e9but\"],configuration[u\"Global\"][\"fin\"]]\n",
-      "if \"Conclusion\" in configuration:\n",
-      "    conclusion=[configuration[u\"Conclusion\"][u\"d\u00e9but\"],configuration[u\"Conclusion\"][\"contenu\"],configuration[u\"Conclusion\"][\"fin\"]]\n",
-      "    conclusionCLOZE=configuration[u\"Conclusion\"][u\"Cloze\"]\n",
-      "else:\n",
-      "    conclusion=[\"\",\"\",\"\"]\n",
-      "    conclusionCLOZE=[]\n",
+      "conclusion=[configuration[u\"Conclusion\"][u\"d\u00e9but\"],configuration[u\"Conclusion\"][\"contenu\"],configuration[u\"Conclusion\"][\"fin\"]]\n",
+      "conclusionCLOZE=configuration[u\"Conclusion\"][u\"Cloze\"]\n",
+      "\n",
       "questions=XMLClozes(categorie)\n",
       "questionsConsigne=ClozeConsigne(consigne,boucleWrap=boucleWrap,globalWrap=globalWrap,conclusion=conclusion)\n",
-      "serie=ClozeSerie(configuration[u\"Boucle\"][u\"Cloze\"],conclusionCLOZE)"
+      "serie=ClozeSerie(configuration[u\"Boucle\"][u\"Cloze\"],configuration[u\"Conclusion\"][u\"Cloze\"])"
      ],
      "language": "python",
      "metadata": {},
      "outputs": [],
-     "prompt_number": 43
+<<<<<<< HEAD
+     "prompt_number": 25
+=======
+     "prompt_number": 5
+>>>>>>> FETCH_HEAD
+    },
+    {
+     "cell_type": "code",
+     "collapsed": false,
+     "input": [
+      "serie.exercices"
+     ],
+     "language": "python",
+     "metadata": {},
+     "outputs": [
+      {
+       "metadata": {},
+       "output_type": "pyout",
+<<<<<<< HEAD
+       "prompt_number": 26,
+=======
+       "prompt_number": 6,
+>>>>>>> FETCH_HEAD
+       "text": [
+        "[]"
+       ]
+      }
+     ],
+<<<<<<< HEAD
+     "prompt_number": 26
+=======
+     "prompt_number": 6
+>>>>>>> FETCH_HEAD
     },
     {
      "cell_type": "code",
      "collapsed": false,
      "input": [
       "for exercices in donnees:\n",
-      "#    print \"exercices\",exercices\n",
       "    for exercice in exercices:\n",
-      "#        print \"exercice\",exercice\n",
       "        exerciceBoucle=exercices[exercice][\"boucle\"]\n",
       "        exerciceConclusion=exercices[exercice][\"conclusion\"]\n",
-      "        serie.addExercice(Exercice(exerciceBoucle,exerciceConclusion,exercice.decode('utf8')))"
+      "        serie.addExercice(Exercice(exerciceBoucle,exerciceConclusion))\n"
      ],
      "language": "python",
      "metadata": {},
+<<<<<<< HEAD
+     "outputs": [
+      {
+       "ename": "TypeError",
+       "evalue": "list indices must be integers, not str",
+       "output_type": "pyerr",
+       "traceback": [
+        "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m\n\u001b[0;31mTypeError\u001b[0m                                 Traceback (most recent call last)",
+        "\u001b[0;32m<ipython-input-27-80edbd919a7f>\u001b[0m in \u001b[0;36m<module>\u001b[0;34m()\u001b[0m\n\u001b[1;32m      1\u001b[0m \u001b[0;32mfor\u001b[0m \u001b[0mexercices\u001b[0m \u001b[0;32min\u001b[0m \u001b[0mdonnees\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m      2\u001b[0m     \u001b[0;32mfor\u001b[0m \u001b[0mexercice\u001b[0m \u001b[0;32min\u001b[0m \u001b[0mexercices\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m----> 3\u001b[0;31m         \u001b[0mexerciceBoucle\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0mexercices\u001b[0m\u001b[0;34m[\u001b[0m\u001b[0mexercice\u001b[0m\u001b[0;34m]\u001b[0m\u001b[0;34m[\u001b[0m\u001b[0;34m\"boucle\"\u001b[0m\u001b[0;34m]\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m      4\u001b[0m         \u001b[0mexerciceConclusion\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0mexercices\u001b[0m\u001b[0;34m[\u001b[0m\u001b[0mexercice\u001b[0m\u001b[0;34m]\u001b[0m\u001b[0;34m[\u001b[0m\u001b[0;34m\"conclusion\"\u001b[0m\u001b[0;34m]\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m      5\u001b[0m         \u001b[0mserie\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0maddExercice\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mexerciceBoucle\u001b[0m\u001b[0;34m,\u001b[0m\u001b[0mexerciceConclusion\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
+        "\u001b[0;31mTypeError\u001b[0m: list indices must be integers, not str"
+       ]
+      }
+     ],
+     "prompt_number": 27
+=======
      "outputs": [],
-     "prompt_number": 44
+     "prompt_number": 7
+>>>>>>> FETCH_HEAD
     },
     {
      "cell_type": "code",
      "collapsed": false,
      "input": [
-      "for exercice in serie.makeSerie(questionsConsigne):\n",
-      "    questions.addExercice(exercice)"
+      "serie.makeSerie(questionsConsigne)"
      ],
      "language": "python",
      "metadata": {},
-     "outputs": [],
-     "prompt_number": 45
+     "outputs": [
+      {
+<<<<<<< HEAD
+       "metadata": {},
+       "output_type": "pyout",
+       "prompt_number": 8,
+=======
+       "output_type": "stream",
+       "stream": "stdout",
+>>>>>>> FETCH_HEAD
+       "text": [
+        "['', '', u'Donnez la base et la construction correspondant au lex\\xe8me POMMIER', 'Base : {1:SAC:=POMME}, Construction : {1:MC:=arbre de BASE~agent de BASE}', '', '', u'Donnez la base et la construction correspondant au lex\\xe8me POMPIER', u'Base : {1:SAC:=POMPE}, Construction : {1:MC:=activit\\xe9 en rapport avec BASE~arbre de BASE}', '', '', u'Quel est le point commun entre ces deux constructions ? {1:MCH:=la phonologie~la s\\xe9mantique}', u'Quelle est la diff\\xe9rence entre ces deux constructions ? {1:MC:=la s\\xe9mantique~la phonologie}', '', '']\n",
+        "['', '', u'Donnez la base et la construction correspondant au lex\\xe8me POIRIER', 'Base : {1:SAC:=POIRE}, Construction : {1:MC:=arbre de BASE~agent de BASE}', '', '', u'Donnez la base et la construction correspondant au lex\\xe8me POISSONIER', u'Base : {1:SAC:=POISSON}, Construction : {1:MC:=activit\\xe9 en rapport avec BASE~agent de BASE}', '', '', u'Quel est le point commun entre ces deux constructions ? {1:MCH:=la phonologie~la s\\xe9mantique}', u'Quelle est la diff\\xe9rence entre ces deux constructions ? {1:MC:=la s\\xe9mantique~la phonologie}', '', '']\n",
+        "['', '', u'Donnez la base et la construction correspondant au lex\\xe8me VENDEUR', u'Base : {1:SAC:=VENDRE}, Construction : {1:MC:=agent de BASE~activit\\xe9 en rapport avec BASE}', '', '', u'Donnez la base et la construction correspondant au lex\\xe8me POISSONIER', u'Base : {1:SAC:=POISSON}, Construction : {1:MC:=activit\\xe9 en rapport avec BASE~agent de BASE}', '', '', u'Quel est le point commun entre ces deux constructions ? {1:MCH:=la s\\xe9mantique~la phonologie}', u'Quelle est la diff\\xe9rence entre ces deux constructions ? {1:MC:=la phonologie~la s\\xe9mantique}', '', '']\n"
+       ]
+      }
+     ],
+     "prompt_number": 8
+<<<<<<< HEAD
     },
     {
      "cell_type": "code",
      "collapsed": false,
      "input": [
-      "xmlOutput=MoodleXML()\n",
-      "xmlOutput.addQuiz(questions.getClozes())"
+      "for exercice in exercices:\n",
+      "    clozeExercice=ClozeExercice(exercice)\n",
+      "    questions.addExercice(clozeExercice)\n",
+      "print questions.getClozes()\n",
+      "print questions.exercices"
      ],
      "language": "python",
      "metadata": {},
-     "outputs": [],
-     "prompt_number": 46
+     "outputs": [
+      {
+       "ename": "AttributeError",
+       "evalue": "ClozeExercice instance has no attribute 'split'",
+       "output_type": "pyerr",
+       "traceback": [
+        "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m\n\u001b[0;31mAttributeError\u001b[0m                            Traceback (most recent call last)",
+        "\u001b[0;32m<ipython-input-9-1192e9765d76>\u001b[0m in \u001b[0;36m<module>\u001b[0;34m()\u001b[0m\n\u001b[1;32m      1\u001b[0m \u001b[0;32mfor\u001b[0m \u001b[0mexercice\u001b[0m \u001b[0;32min\u001b[0m \u001b[0mexercices\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m      2\u001b[0m     \u001b[0mclozeExercice\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0mClozeExercice\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mexercice\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m----> 3\u001b[0;31m     \u001b[0mquestions\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0maddExercice\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mclozeExercice\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m      4\u001b[0m \u001b[0;32mprint\u001b[0m \u001b[0mquestions\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mgetClozes\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m      5\u001b[0m \u001b[0;32mprint\u001b[0m \u001b[0mquestions\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mexercices\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
+        "\u001b[0;32m/Users/gilles/GitHub/eCloze/MoodleXML.pyc\u001b[0m in \u001b[0;36maddExercice\u001b[0;34m(self, exercice)\u001b[0m\n\u001b[1;32m    135\u001b[0m                 \u001b[0mconsigneLigne\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mappend\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mmakeChamps\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mconsigne\u001b[0m\u001b[0;34m,\u001b[0m\u001b[0mexercice\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    136\u001b[0m             \u001b[0mresult\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mappend\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m\"\\n\"\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mjoin\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mconsigneLigne\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m--> 137\u001b[0;31m             \u001b[0mchamps\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0mexercice\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0msplit\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m\";\"\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m    138\u001b[0m             \u001b[0;32mfor\u001b[0m \u001b[0mindex\u001b[0m\u001b[0;34m,\u001b[0m\u001b[0mchamp\u001b[0m \u001b[0;32min\u001b[0m \u001b[0menumerate\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mchamps\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    139\u001b[0m                 \u001b[0;32mif\u001b[0m \u001b[0;32mnot\u001b[0m \u001b[0mindex\u001b[0m \u001b[0;32min\u001b[0m \u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mchoix\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
+        "\u001b[0;31mAttributeError\u001b[0m: ClozeExercice instance has no attribute 'split'"
+       ]
+      }
+     ],
+     "prompt_number": 9
+=======
+>>>>>>> FETCH_HEAD
     },
     {
      "cell_type": "code",
      "collapsed": false,
      "input": [
-      "xmlFichier=csvFichier.split(\".\")[0]+\".xml\""
+      "serie.exercices[0].boucle"
      ],
      "language": "python",
      "metadata": {},
-     "outputs": [],
-     "prompt_number": 47
+     "outputs": [
+      {
+       "metadata": {},
+       "output_type": "pyout",
+       "prompt_number": 11,
+       "text": [
+        "[['POMMIER', '{1:SAC:=POMME}', '{1:MC:=arbre de BASE~agent de BASE}'],\n",
+        " ['POMPIER',\n",
+        "  '{1:SAC:=POMPE}',\n",
+        "  u'{1:MC:=activit\\xe9 en rapport avec BASE~arbre de BASE}']]"
+       ]
+      }
+     ],
+     "prompt_number": 11
     },
     {
      "cell_type": "code",
      "collapsed": false,
-     "input": [
-      "with codecs.open(xmlFichier, 'w',\"utf8\") as output:\n",
-      "#    print [questions.getClozes()]\n",
-      "    output.write(xmlOutput.getXML())"
-     ],
+     "input": [],
      "language": "python",
      "metadata": {},
-     "outputs": [],
-     "prompt_number": 48
+     "outputs": []
     }
    ],
    "metadata": {}
->>>>>>> master
   }
- },
- "nbformat": 4,
- "nbformat_minor": 0
+ ]
 }
