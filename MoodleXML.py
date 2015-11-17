@@ -136,7 +136,7 @@ class ClozeExercice:
     
     on fournit le titre et le corps de la question à insérer tout prêts
     '''
-    def __init__(self,titre,corps):
+    def __init__(self,titre,corps,penalty="0.3333333",shuffle=1):
         self.titre=titre
         self.corps=corps
         exerciceStructure=[ 
@@ -144,7 +144,8 @@ class ClozeExercice:
                 u'<name><text>%s</text></name>'%self.titre,
                 u'<questiontext><text><![CDATA[%s]]></text></questiontext>'%self.corps,
                 u'<generalfeedback><text>Bien reçu.</text></generalfeedback>',
-                u'<shuffleanswers>1</shuffleanswers>',
+                u'<shuffleanswers>%d</shuffleanswers>'%shuffle,
+                u'<penalty>%s</penalty>'%penalty,
             u'</question>'
             ]
         self.forme=u"\n".join(exerciceStructure)
