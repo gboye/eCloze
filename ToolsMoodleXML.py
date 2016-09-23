@@ -4,7 +4,7 @@ import re
 import random
 
 choixMultiples=["MC","MCV","MCH"]
-choixSimples=["SA","SAC"]
+choixSimples=["SA","SAC","SACV"]
 maxChoix=10
 penalite="0.3333333"
 
@@ -85,7 +85,11 @@ class ClozeSerie:
             if structure in choixMultiples:
                 if not nStructure in self.reponsesBoucles:
                     self.reponsesBoucles[nStructure]=set()
-                self.reponsesBoucles[nStructure].add(reponses[nStructure])
+                if "~=" in reponses[nStructure]:
+                    for elementReponse in reponses[nStructure].split("~="):
+                        self.reponsesBoucles[nStructure].add(elementReponse)
+                else:
+                    self.reponsesBoucles[nStructure].add(reponses[nStructure])
         for nStructure,structure in enumerate(self.sConclusion):
           if structure in choixMultiples and nStructure in range(len(conclusion)):
             if not nStructure in self.reponsesConclusions:
@@ -93,12 +97,22 @@ class ClozeSerie:
             self.reponsesConclusions[nStructure].add(conclusion[nStructure])
 
     def getChoix(self,index,bonneReponse,section="boucle"):
-#      print index,bonneReponse,section
+#     print index,bonneReponse,section
       if section=="boucle":
         choixPossibles=self.reponsesBoucles[index].copy()
       elif section=="conclusion":
         choixPossibles=self.reponsesConclusions[index].copy()
-      choixPossibles.remove(bonneReponse)
+      '''
+      Si la bonne réponse correspond à plusieurs choix (séparés par "~="), il faut éliminer chacun des bons choix
+      des mauvaises réponses possibles
+      '''
+      if "~=" in bonneReponse:
+        for elementReponse in bonneReponse.split("~="):
+            choixPossibles.remove(elementReponse)
+      elif bonneReponse in choixPossibles:
+        choixPossibles.remove(bonneReponse)
+      else:
+        print "Problème avec la réponse %s" % bonneReponse
       nChoix=min(maxChoix,len(choixPossibles))
       choix=random.sample(choixPossibles,nChoix)
       return bonneReponse+"~"+"~".join(choix)
@@ -114,7 +128,14 @@ class ClozeSerie:
               if self.sBoucle[nChamp] in choixMultiples:
                 self.exercices[nExercice].boucle[nElement][nChamp]="{1:%s:=%s}"%(self.sBoucle[nChamp],self.getChoix(nChamp,element[nChamp]))
               elif self.sBoucle[nChamp] in choixSimples:
-                self.exercices[nExercice].boucle[nElement][nChamp]="{1:%s:=%s}"%(self.sBoucle[nChamp],element[nChamp])
+                choixSimple=self.sBoucle[nChamp]
+                if self.sBoucle[nChamp]=="SACV":
+#                    print element[nChamp], element[nChamp].upper()
+                    if element[nChamp]==element[nChamp].upper():
+                        choixSimple="SAC"
+                    else:
+                        choixSimple="SA"
+                self.exercices[nExercice].boucle[nElement][nChamp]="{1:%s:=%s}"%(choixSimple,element[nChamp])
             else:
               if debug: print "Champ vide",nChamp
         for nElement, element in enumerate(exercice.conclusion):
