@@ -1,7 +1,7 @@
 # -*- coding: utf8 -*-
 
 import re
-import random
+import random, warnings
 
 choixMultiples=["MC","MCV","MCH"]
 choixSimples=["SA","SAC","SACV"]
