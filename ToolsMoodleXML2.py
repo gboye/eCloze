@@ -274,6 +274,44 @@ class ClozeSerie:
       return result
 
 
+class RegExExercice:
+    '''
+    Conteneur pour un exercice RegEx
+
+    on fournit le titre, le corps et les réponses de la question à insérer tout prêts
+    '''
+    def __init__(self,titre,consigne,reponses,
+                 penalty="0.2000000",usehint="0",usecase="1",alternates="0"):
+        self.titre=titre
+        self.consigne="<br>".join(consigne)
+        self.reponses=reponses
+        regexReponses=[]
+        if len(reponses)!=1:
+            warnings.warn("\nPlusieurs réponses dans le RegEx\nElles seront toutes considérées correctes.")
+        for reponse in reponses:
+            regexReponse=[
+            u'<answer fraction="100">',
+                u'<text>%s</text>'%reponse,
+            u'</answer>'
+            ]
+            regexReponses.extend(regexReponse)
+
+        exerciceStructure=[
+            u'<question type="regexp">',
+                u'<name><text>%s</text></name>'%self.titre,
+                u'<questiontext><text><![CDATA[%s]]></text></questiontext>'%self.consigne,
+                u'<generalfeedback><text>Bien reçu.</text></generalfeedback>',
+                u'<studentshowalternate>%s</studentshowalternate>'%alternates,
+                u'<usehint>%s</usehint>'%usehint,
+                u'<usecase>%s</usecase>'%usecase,
+                u'<penalty>%s</penalty>'%penalty,
+                u"\n".join(regexReponses),
+            u'</question>'
+            ]
+        self.forme=u"\n".join(exerciceStructure)
+
+
+
 class ClozeExercice:
     '''
     Conteneur pour un exercice Cloze
