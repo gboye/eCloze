@@ -4,8 +4,9 @@ import re
 import random
 
 choixMultiples=["MC","MCV","MCH"]
-choixSimples=["SA","SAC"]
+choixSimples=["SA","SAC","SACV"]
 maxChoix=10
+penalite="0.3333333"
 
 debug=False
 
@@ -28,11 +29,11 @@ class XMLClozes:
     def __init__(self,category):
         self.category=category
         self.exercices=[]
-    
+
     def addExercice(self,exercice):
         self.exercices.append(exercice)
-    
-    def getClozes(self):                
+
+    def getClozes(self):
         categoryStructure=[u'<question type="category">',
                             u'<category>',
                                 u'<text>',
@@ -56,13 +57,13 @@ class Exercice:
     self.conclusion=conclusion
     self.titre=titre
 
-    
+
 
 class ClozeSerie:
     '''
     Conteneur pour les éléments d'une série d'exercices Cloze
-    
-    L'initialisation demande la structure des boucles et de la conclusion 
+
+    L'initialisation demande la structure des boucles et de la conclusion
     La structure est une liste de TXT,SA,SAC,MC,MCV,MCH
     '''
     def __init__(self,sBoucle,sConclusion):
@@ -71,7 +72,7 @@ class ClozeSerie:
         self.reponsesBoucles={}
         self.reponsesConclusions={}
         self.exercices=[]
-    
+
     def addExercice(self,exercice):
         '''
         Stocker les ensembles de réponses et les possibilités pour chaque position
@@ -84,24 +85,38 @@ class ClozeSerie:
             if structure in choixMultiples:
                 if not nStructure in self.reponsesBoucles:
                     self.reponsesBoucles[nStructure]=set()
-                self.reponsesBoucles[nStructure].add(reponses[nStructure])
+                if "~=" in reponses[nStructure]:
+                    for elementReponse in reponses[nStructure].split("~="):
+                        self.reponsesBoucles[nStructure].add(elementReponse)
+                else:
+                    self.reponsesBoucles[nStructure].add(reponses[nStructure])
         for nStructure,structure in enumerate(self.sConclusion):
           if structure in choixMultiples and nStructure in range(len(conclusion)):
             if not nStructure in self.reponsesConclusions:
                 self.reponsesConclusions[nStructure]=set()
             self.reponsesConclusions[nStructure].add(conclusion[nStructure])
-       
+
     def getChoix(self,index,bonneReponse,section="boucle"):
-#      print index,bonneReponse,section
+#     print index,bonneReponse,section
       if section=="boucle":
         choixPossibles=self.reponsesBoucles[index].copy()
       elif section=="conclusion":
         choixPossibles=self.reponsesConclusions[index].copy()
-      choixPossibles.remove(bonneReponse)
+      '''
+      Si la bonne réponse correspond à plusieurs choix (séparés par "~="), il faut éliminer chacun des bons choix
+      des mauvaises réponses possibles
+      '''
+      if "~=" in bonneReponse:
+        for elementReponse in bonneReponse.split("~="):
+            choixPossibles.remove(elementReponse)
+      elif bonneReponse in choixPossibles:
+        choixPossibles.remove(bonneReponse)
+      else:
+        print "Problème avec la réponse %s" % bonneReponse
       nChoix=min(maxChoix,len(choixPossibles))
       choix=random.sample(choixPossibles,nChoix)
       return bonneReponse+"~"+"~".join(choix)
-      
+
     def makeSerie(self,consigne):
       result=[]
       for nExercice,exercice in enumerate(self.exercices):
@@ -113,7 +128,14 @@ class ClozeSerie:
               if self.sBoucle[nChamp] in choixMultiples:
                 self.exercices[nExercice].boucle[nElement][nChamp]="{1:%s:=%s}"%(self.sBoucle[nChamp],self.getChoix(nChamp,element[nChamp]))
               elif self.sBoucle[nChamp] in choixSimples:
-                self.exercices[nExercice].boucle[nElement][nChamp]="{1:%s:=%s}"%(self.sBoucle[nChamp],element[nChamp])
+                choixSimple=self.sBoucle[nChamp]
+                if self.sBoucle[nChamp]=="SACV":
+#                    print element[nChamp], element[nChamp].upper()
+                    if element[nChamp]==element[nChamp].upper():
+                        choixSimple="SAC"
+                    else:
+                        choixSimple="SA"
+                self.exercices[nExercice].boucle[nElement][nChamp]="{1:%s:=%s}"%(choixSimple,element[nChamp])
             else:
               if debug: print "Champ vide",nChamp
         for nElement, element in enumerate(exercice.conclusion):
@@ -128,23 +150,25 @@ class ClozeSerie:
         exerciceSerie=ClozeExercice(exercice.titre,"<br>\n".join(exerciceCloze))
         result.append(exerciceSerie)
       return result
-            
+
 
 class ClozeExercice:
     '''
     Conteneur pour un exercice Cloze
-    
+
     on fournit le titre et le corps de la question à insérer tout prêts
     '''
-    def __init__(self,titre,corps):
+    def __init__(self,titre,corps,penalty="0.3333333",shuffle=1):
         self.titre=titre
         self.corps=corps
-        exerciceStructure=[ 
+        if penalty=="0.3333333": penalty=penalite
+        exerciceStructure=[
             u'<question type="cloze">',
                 u'<name><text>%s</text></name>'%self.titre,
                 u'<questiontext><text><![CDATA[%s]]></text></questiontext>'%self.corps,
                 u'<generalfeedback><text>Bien reçu.</text></generalfeedback>',
-                u'<shuffleanswers>1</shuffleanswers>',
+                u'<shuffleanswers>%d</shuffleanswers>'%shuffle,
+                u'<penalty>%s</penalty>'%penalty,
             u'</question>'
             ]
         self.forme=u"\n".join(exerciceStructure)
@@ -153,15 +177,15 @@ class ClozeExercice:
 class ClozeConsigne:
     '''
     Conteneur pour la consigne d'un exercice Cloze
-    
+
     globalWrap donne un cadre pour l'ensemble de l'exercice qui apparaît tout
         en haut et tout en bas
-    boucleWrap donne un cadre pour les boucles qui apparaît au début et 
+    boucleWrap donne un cadre pour les boucles qui apparaît au début et
         à la fin de chaque boucle
     conclusion donne une question sur l'ensemble avec un cadre
-    
+
     consignes donne le contenu de la question des boucles
-    
+
     dans consignes comme dans conclusion, les arguments sont repérés par #num#
     '''
     def __init__(self,consignes,**kwargs):
@@ -175,7 +199,7 @@ class ClozeConsigne:
             self.headerGlobal=[]
             self.trailerGlobal=[]
             self.globalWrap=False
-            
+
         if "boucleWrap" in kwargs:
             self.headerBoucle=kwargs["boucleWrap"][0]
             self.trailerBoucle=kwargs["boucleWrap"][1]
@@ -184,7 +208,7 @@ class ClozeConsigne:
             self.headerBoucle=[]
             self.trailerBoucle=[]
             self.boucleWrap=False
-            
+
         if "conclusion" in kwargs:
             self.headerConclusion=kwargs["conclusion"][0]
             self.conclusion=kwargs["conclusion"][1]
@@ -195,7 +219,7 @@ class ClozeConsigne:
             self.headerConclusion=[]
             self.trailerConclusion=[]
             self.conclusionWrap=False
-    
+
     def getConsigne(self,exercice):
         result=[]
         lignes=exercice.boucle
