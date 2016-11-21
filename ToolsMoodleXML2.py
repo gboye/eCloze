@@ -289,11 +289,26 @@ class RegExExercice:
         if len(reponses)!=1:
             warnings.warn("\nPlusieurs réponses dans le RegEx\nElles seront toutes considérées correctes.")
         for reponse in reponses:
-            regexReponse=[
-            u'<answer fraction="100">',
-                u'<text>%s</text>'%reponse,
-            u'</answer>'
-            ]
+            if isinstance(reponse, basestring):
+                regexReponse=[
+                u'<answer fraction="100">',
+                    u'<text>%s</text>'%reponse,
+                u'</answer>'
+                ]
+            elif isinstance(reponse,(list,tuple)):
+                if len(reponse)>=2:
+                    if len(reponse)<3:
+                        reponse.append("")
+                    regexReponse=[
+                        u'<answer fraction="%s">'%reponse[0],
+                            u'<text>%s</text>'%reponse[1],
+                            u'<feedback format="html">',
+                                u'<text><![CDATA[%s]]></text>'%reponse[2],
+                            u'</feedback>',
+                        u'</answer>'
+                    ]
+            else:
+                warnings.warn("\nRéponses incompréhensibles.")
             regexReponses.extend(regexReponse)
 
         exerciceStructure=[
