@@ -333,7 +333,7 @@ class ClozeExercice:
 
     on fournit le titre et le corps de la question à insérer tout prêts
     '''
-    def __init__(self,titre,corps,penalty="0.3333333",shuffle=1):
+    def __init__(self,titre,corps,penalty="0.3333333",shuffle=1,nbHints=None):
         self.titre=titre
         self.corps=corps
         if penalty=="0.3333333": penalty=penalite
@@ -346,6 +346,10 @@ class ClozeExercice:
                 u'<penalty>%s</penalty>'%penalty,
             u'</question>'
             ]
+        if nbHints:
+            for hintNum in range(nbHints):
+                hintText='<hint format="html"><text><![CDATA[<p>Il vous reste %d essais<br></p>]]></text></hint>'%(nbHints-hintNum)
+                exerciceStructure.insert(-1,hintText)
         self.forme=u"\n".join(exerciceStructure)
 
 
