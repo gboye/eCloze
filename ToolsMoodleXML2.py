@@ -49,6 +49,47 @@ class XMLSeries:
           result+=exercice.forme
         return result
 
+class XMLSubCategory:
+    '''
+    balise de sous-catégorie
+    '''
+    def __init__(self,category):
+        self.category=category
+
+        categoryStructure=[u'<question type="category">',
+                            u'<category>',
+                                u'<text>',
+                                    self.category,
+                                u'</text>',
+                            u'</category>',
+                        u'</question>'
+                        ]
+        self.forme=u"\n".join(categoryStructure)
+
+
+
+class Essay:
+    '''
+    Conteneur pour un exercice Essay
+
+    on fournit le titre et le corps de la question à insérer tout prêts
+    '''
+    def __init__(self,titre,consigne):
+        self.titre=titre
+        self.consigne=consigne
+        exerciceStructure=[
+            u'<question type="essay">',
+                u'<name><text>%s</text></name>'%titre,
+                u'<questiontext><text><![CDATA[%s]]></text></questiontext>'%consigne,
+                u'<generalfeedback><text>Bien reçu.</text></generalfeedback>',
+                u'<responseformat>editor</responseformat>',
+                u'<responserequired>1</responserequired>',
+                u'<responsefieldlines>45</responsefieldlines>',
+                u'</question>'
+                ]
+        self.forme=u"\n".join(exerciceStructure)
+
+
 class DragDropImage:
     '''
     Conteneur pour un exercice DragDrog
