@@ -31,9 +31,12 @@ class XMLSeries:
         self.category=category
         self.exercices=[]
         self.questiontext=set()
+        self.content=[]
 
     def addExercice(self,exercice):
-        self.exercices.append(exercice)
+        if not exercice.forme in self.content:
+            self.content.append(exercice.forme)
+            self.exercices.append(exercice)
 
     def getSeries(self):
         categoryStructure=[u'<question type="category">',
@@ -322,7 +325,7 @@ class RegExExercice:
     on fournit le titre, le corps et les réponses de la question à insérer tout prêts
     '''
     def __init__(self,titre,consigne,reponses,
-                 penalty="0.2000000",usehint="0",usecase="1",alternates="0"):
+                 penalty="0.2000000",usehint="0",usecase="1",alternates="0",nbHints=None):
         self.titre=titre
         self.consigne="<br>".join(consigne)
         self.reponses=reponses
@@ -364,6 +367,10 @@ class RegExExercice:
                 u"\n".join(regexReponses),
             u'</question>'
             ]
+        if nbHints:
+            for hintNum in range(nbHints):
+                hintText='<hint format="html"><text><![CDATA[<p>Il vous reste %d essais<br></p>]]></text></hint>'%(nbHints-hintNum)
+                exerciceStructure.insert(-1,hintText)
         self.forme=u"\n".join(exerciceStructure)
 
 
