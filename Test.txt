@@ -1,0 +1,2 @@
+Les trous sont notés entre (parenthèses). Les choix multiples entre [crochets;parenthèses;accolades] séparés par des (points-virgules), le bon choix étant le [premier;second;troisième].
+Par défaut, chaque ligne compte pour (un exercice) mais on pourrait choisir un séparateur explicite comme [\#EX;\#TITRE] pour donner un titre à chaque question et avoir des questions sur plusieurs lignes. 

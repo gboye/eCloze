@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="category">
+<category>
+<text>
+TEMP/Texte/ParCro
+</text>
+</category>
+</question><question type="cloze">
+<name><text>Question-01</text></name>
+<questiontext><text><![CDATA[Notez vos réponses.<br/>Les trous sont notés entre {1:SAC:parenthèses}. Les choix multiples entre {1:MC:=crochets~parenthèses~accolades} séparés par des {1:SAC:points-virgules}, le bon choix étant le {1:MC:=premier~second~troisième}.
+<br/>]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+<penalty>0.3333333</penalty>
+</question><question type="cloze">
+<name><text>Question-02</text></name>
+<questiontext><text><![CDATA[Notez vos réponses.<br/>Par défaut, chaque ligne compte pour {1:SAC:un exercice} mais on pourrait choisir un séparateur explicite comme {1:MC:=\#EX~\#TITRE} pour donner un titre à chaque question et avoir des questions sur plusieurs lignes. <br/>]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+<penalty>0.3333333</penalty>
+</question>
+</quiz>
