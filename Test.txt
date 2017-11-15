@@ -1,2 +1,18 @@
 Les trous sont notés entre (parenthèses). Les choix multiples entre [crochets;parenthèses;accolades] séparés par des (points-virgules), le bon choix étant le [premier;second;troisième].
 Par défaut, chaque ligne compte pour (un exercice) mais on pourrait choisir un séparateur explicite comme [\#EX;\#TITRE] pour donner un titre à chaque question et avoir des questions sur plusieurs lignes. 
+제레미 (은) 프랑스  사람이에요.
+이자벨 (는) 선생님이에요.
+민호 (는) 가수예요.
+저 (는) 스위스 사람이에요.
+Titre: "Exercice 2"
+Consigne: Ecoutez l’audio et trouvez le mot manquant entre les parenthèses. 
+    début: "
+1.	모르간은      (                       )이에요.
+A.	선생님                B .   한국 사람                  C.   대학생                      D. 회사원
+2.	교수님은      (                       )이에요.
+A.   한국 사람           B. 프랑스 사람                C.   중국 사람                D. 캐나다 사람
+3.	찬호는      (                          )이에요.
+A.	대학원생             B.  대학생                       C. 교수님                       D. 선생님
+4.	미나는      (                     )예요.
+A.	가수                      B.   요리사                     C. 배우                        D. 화가
+

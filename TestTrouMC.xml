@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="category">
+<category>
+<text>
+TEMP/Texte/ParCro/Korean/MC
+</text>
+</category>
+</question><question type="cloze">
+<name><text>Mot manquant N° 01</text></name>
+<questiontext><text><![CDATA[Ecoutez l’audio et trouvez le mot manquant.<br/>모르간은 {1:MC:=선생님~한국 사람~대학생~회사원} 이에요.
+<br/>]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+<penalty>0.3333333</penalty>
+</question><question type="cloze">
+<name><text>Mot manquant N° 02</text></name>
+<questiontext><text><![CDATA[Ecoutez l’audio et trouvez le mot manquant.<br/>교수님은 {1:MC:=한국 사람~프랑스 사람~중국 사람~캐나다 사람} 이에요.
+<br/>]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+<penalty>0.3333333</penalty>
+</question><question type="cloze">
+<name><text>Mot manquant N° 03</text></name>
+<questiontext><text><![CDATA[Ecoutez l’audio et trouvez le mot manquant.<br/>찬호는 {1:MC:=대학원생~대학생~교수님~선생님} 이에요.
+<br/>]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+<penalty>0.3333333</penalty>
+</question><question type="cloze">
+<name><text>Mot manquant N° 04</text></name>
+<questiontext><text><![CDATA[Ecoutez l’audio et trouvez le mot manquant.<br/>미나는 {1:MC:=가수~요리사~배우~화가} 예요.<br/>]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+<penalty>0.3333333</penalty>
+</question>
+</quiz>

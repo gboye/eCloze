@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="category">
+<category>
+<text>
+TEMP/Texte/ParCro/Korean/SAC
+</text>
+</category>
+</question><question type="cloze">
+<name><text>은 ou 는 N° 01</text></name>
+<questiontext><text><![CDATA[Complétez les phrases en choisissant 은 ou 는 pour la particule.<br/>제레미 {1:SAC:=은} 프랑스 사람이에요.
+<br/>]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+<penalty>0.3333333</penalty>
+</question><question type="cloze">
+<name><text>은 ou 는 N° 02</text></name>
+<questiontext><text><![CDATA[Complétez les phrases en choisissant 은 ou 는 pour la particule.<br/>이자벨 {1:SAC:=는} 선생님이에요.
+<br/>]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+<penalty>0.3333333</penalty>
+</question><question type="cloze">
+<name><text>은 ou 는 N° 03</text></name>
+<questiontext><text><![CDATA[Complétez les phrases en choisissant 은 ou 는 pour la particule.<br/>민호 {1:SAC:=는} 가수예요.
+<br/>]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+<penalty>0.3333333</penalty>
+</question><question type="cloze">
+<name><text>은 ou 는 N° 04</text></name>
+<questiontext><text><![CDATA[Complétez les phrases en choisissant 은 ou 는 pour la particule.<br/>저 {1:SAC:=는} 스위스 사람이에요.<br/>]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+<penalty>0.3333333</penalty>
+</question>
+</quiz>
