@@ -1,2 +1,9 @@
-﻿
-1[fleur;voiture;souris].2[cochon;acteur;journaliste;baguette].3[pomme;fruits;peintre;café].4[réveil/montre;bus;parc;bureau de poste].5[커피;파리;콜라;프로방스].6[서울;한국;프랑스;시계].7[De rien;Pardon;Excusez-moi;Ce n'est pas grave].8[Bonjour;Merci;Pardon;Excusez-moi].9[coréen;langue coréenne;Corée;français].
+﻿1[fleur;voiture;souris].
+2[cochon;acteur;journaliste;baguette].
+3[pomme;fruits;peintre;café].
+4[réveil/montre;bus;parc;bureau de poste].
+5[커피;파리;콜라;프로방스].
+6[서울;한국;프랑스;시계].
+7[De rien;Pardon;Excusez-moi;Ce n'est pas grave].
+8[Bonjour;Merci;Pardon;Excusez-moi].
+9[coréen;langue coréenne;Corée;français].

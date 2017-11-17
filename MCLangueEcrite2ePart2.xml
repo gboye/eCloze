@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="category">
+<category>
+<text>
+TEMP/Texte/ParCro/Korean/MC
+</text>
+</category>
+</question><question type="cloze">
+<name><text>Langue écrite 2.2 N° 01</text></name>
+<questiontext><text><![CDATA[<br/>Choisissez la traduction correcte<br>
+<br>1.	Manon est plus grand que Pierre.
+<br>{1:MC:=마농이 피에르보다 더 커요.~피에르가 마농보다  더 커요.~마농이 피에르보다 덜 커요.~마농이 피에르보다 더 빨라요.}<br>
+<br>2.	La piscine est moins loin que la bibliothèque :
+<br>{1:MC:=수영장이 도서관보다 덜 멀어요.~도서관이 수영장보다 덜 멀어요.~수영장이 도서관보다 더 멀어요.~수영장이 우체국보다 더 멀어요.}<br>
+<br>3.	Je travaille autant que Dasom .
+<br>{1:MC:=저는 다솜만큼 일해요.~저는 다솜보다 일해요.~다솜은 저처럼 일해요.~다솜은 저보다 일해요.}<br>
+<br>4.	Il me semble que le film est intéressant.
+<br>{1:MC:=영화는 재미있는 것 같아요.~영화는 재미없는 것 같아요.~영화는 재미없기 때문이에요.~영화는 재미있기 때문이에요.}<br>
+<br>5.	Pierre est fatigué parce qu’il a couru beaucoup.
+<br>{1:MC:=피에르는  많이 뛰어서 피곤해요.~피에르는 많이 뛰면 피곤해요.~피에르는 많이 뛰고 피곤해요.~피에르는 피곤해서 많이 뛰어요.}<br>
+<br>6.	J’apprends le coréen parce que j’aime regarder les dramas coréens. 
+<br>{1:MC:=저는 한국 드라마 보는 것을 좋아해서 한국어를 배워요.~저는 한국 드라마를 보고 싶어서 한국어를 배워요.~저는 한국 드라마만큼 한국어를 좋아해요.~저는 한국어를 배워서 한국 드라마 보는 것을 좋아해요.}<br>
+<br>7.	 모르간은 니콜라보다  더 빨라요.
+<br>{1:MC:=Morgane est plus rapide que Nicolas.~Morgane est moins rapide que Nicolas.~Morgane est aussi rapide que Nicolas.~Nicolas est plus rapide que Morgane.}<br>
+<br>8.	 줄리는 재미있기 때문에 친구가 많아요.
+<br>{1:MC:=Julie a beaucoup d’amies parce qu’elle est drôle.~Julie a beaucoup d’amies parce qu’elle est gentille.~Julie n’a pas d’amies parce qu’elle n’est pas drôle.~Julie n’a pas d’amies parce qu’elle n’est pas gentille.}<br>
+<br>9.	마농은 줄리보다 성실한 것 같아요.
+<br>{1:MC:=Il me semble Manon est plus sérieuse que Julie.~Parce que Manon est plus sérieuse que Julie.~Il me semble que Julie est plus sérieuse que Manon.~Parce que Julie est plus sérieuse que Manon.}<br>
+<br>10.	 해나 씨는 성격이 좋아요.
+<br>{1:MC:=Hena a un bon caractère.~Hena est gentille.~Hena est gaie.~Hena est sage.}<br>
+<br>11.	 Parmi quatre saisons, je préfère l’hiver.
+<br>{1:MC:=사계절 중에서 겨울이 제일 좋아요.~사계절 중에서 여름이 가장 좋아요.~사계절만큼 겨울이 더 좋아요.~사계절만큼 여름이 더 좋아요.}<br>
+<br>12.	 Je ne peux pas faire du shopping parce que je suis très occupé.
+<br>{1:MC:=저는 아주 바빠서 쇼핑을 할 수 없어요.~저는 아주 바빠서 쇼핑을 하거든요.~저는 아주 바빠서 쇼핑을 해 보고 싶어요.~저는 아주 바빠서 쇼핑을 해 봤어요.}<br>
+<br>13.	 Quand j’ai envie d’aller en Corée, je regarde les dramas coréens.
+<br>{1:MC:=한국에 가고 싶으면 한국 드라마를 봐요.~한국에 가고 싶기 때문에 한국 드라마를 봐요.~한국에 가서 한국 드라마를 봐요.~한국에 갈 수 있어서 한국 드라마를 봐요.}<br>
+<br>14.	 Essayez de lire cette phrase.
+<br>{1:MC:=이 문장을 읽어 보세요.~이 문장을 읽을 수 있어요.~이 문장을 읽기 때문이에요.~이 문장을 읽어서요.}<br>
+<br>15.	 Ecrivez la phrase comme dans l’exemple.
+<br>{1:MC:=보기처럼 문장을 쓰세요.~보기중에서 문장을 쓰세요.~보기만큼 문장을 쓰세요.~보기다음으로 문장을 쓰세요.}<br>
+<br>16.	 Parmi les groupes K-pop, mon préféré est BTS, ensuite BIG BANG, puis KARD.
+<br>{1:MC:=케이팝 그룹중에서 저는 BTS가 제일 좋아요. 그다음으로는 빅뱅, 그다음으로는 카드가 좋아요.~케이팝 그룹중에서 저는 BTS가 빅뱅하고 카드보다 더 좋아요.~케이팝 그룹처럼 BTS가 빅뱅하고 카드보다 더 좋아요.~케이팝 그룹중에서 BTS만큼 빅뱅하고 카드도 좋아요.}<br>
+<br>17.	  Si mon amie arrive en Corée, nous allons aller dans un restaurant de 불고기.
+<br>{1:MC:=제 친구가 한국에 오면 우리는 불고기 식당에 갈 거예요.~제 친구가  한국에 올 수 있어서 불고기 식당에 갈 거예요.~제 친구가 한국에 오기 때문에 우리는 불고기 식당에 갈 거예요.~제 친구가 한국에  와서 우리는 불고기 식당에 갈 거예요.}<br><br/>]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+<penalty>0.3333333</penalty>
+</question>
+</quiz>

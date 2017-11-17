@@ -8,14 +8,15 @@ TEMP/Texte/ParCro/Korean/MC
 </category>
 </question><question type="cloze">
 <name><text>Traduction N° 01</text></name>
-<questiontext><text><![CDATA[Ecoutez et choisissez le mot ou l’expression correspondant.<br/>﻿
-<br/>]]></text></questiontext>
-<generalfeedback><text>Bien reçu.</text></generalfeedback>
-<shuffleanswers>1</shuffleanswers>
-<penalty>0.3333333</penalty>
-</question><question type="cloze">
-<name><text>Traduction N° 02</text></name>
-<questiontext><text><![CDATA[Ecoutez et choisissez le mot ou l’expression correspondant.<br/>1{1:MC:=fleur~voiture~souris].2{1:MC:=cochon~acteur~journaliste~baguette].3{1:MC:=pomme~fruits~peintre~café].4{1:MC:=réveil/montre~bus~parc~bureau de poste].5{1:MC:=커피~파리~콜라~프로방스}.6[서울~한국~프랑스~시계}.7[De rien~Pardon~Excusez-moi~Ce n'est pas grave}.8[Bonjour~Merci~Pardon~Excusez-moi}.9[coréen~langue coréenne~Corée~français}.<br/>]]></text></questiontext>
+<questiontext><text><![CDATA[Ecoutez et choisissez le mot ou l’expression correspondant.<br/>﻿1{1:MC:=fleur~voiture~souris}.
+<br>2{1:MC:=cochon~acteur~journaliste~baguette}.
+<br>3{1:MC:=pomme~fruits~peintre~café}.
+<br>4{1:MC:=réveil/montre~bus~parc~bureau de poste}.
+<br>5{1:MC:=커피~파리~콜라~프로방스}.
+<br>6{1:MC:=서울~한국~프랑스~시계}.
+<br>7{1:MC:=De rien~Pardon~Excusez-moi~Ce n'est pas grave}.
+<br>8{1:MC:=Bonjour~Merci~Pardon~Excusez-moi}.
+<br>9{1:MC:=coréen~langue coréenne~Corée~français}.<br><br/>]]></text></questiontext>
 <generalfeedback><text>Bien reçu.</text></generalfeedback>
 <shuffleanswers>1</shuffleanswers>
 <penalty>0.3333333</penalty>

@@ -1,0 +1,43 @@
+Choisissez la traduction correcte.<br>
+1.	도서관
+[bibliothèque;parc;bureau de poste;piscine]<br>
+2.	 기자
+[journaliste;peintre;acteur / actrice;romancier\(ère\)]<br>
+3.	 과일
+[Fruits;Leçon;Réveil;Arbre]<br>
+4.	꽃
+[fleur;voiture;pain;livre;chien]<br> 
+5.	 뭐
+[Quoi/que;Nom/prénom;Je/moi;Exemple]<br>
+6.	 회사원
+[Employé\(e\) d’une compagnie;Metteur en scène;Romancier\(ère\);Chanteur\(euse\) d’opéra]<br>
+7.	친구
+[Amie;Qui;Personne;Dialogue]<br>
+8.	 의사
+[Médecin;Chaise;Bureau/table;Photo]<br>
+9.	 처음 뵙겠습니다.
+[Enchanté\(é\) de vous rencontrer.;Ah, vraiment ?;Cela fait plaisir de vous revoir.;Bonjour.]<br>
+10.	 Etudiant\(e\) en master
+[대학원생;대학생;사람;선생님]<br>
+11.	  Histoire
+[역사;읽기;전공;대화]<br>
+12.	 Oui
+[네;아니요;도;씨]<br>
+13.	 Allemagne
+[독일;영국;미국;호주]<br>
+14.	  Japonais\(langue\)
+[일본어;중국어;일본 사람;가봉 사람]<br>
+15.	 Madame Kim Mi-jin est actrice.
+[김미진 선생님은 배우예요.;김미진은 선생님이에요.;김미진 씨는 선생님이에요.;김미진 씨는 배우 선생님이에요.]<br>
+16.	 가 : Pierre n’est pas français. Est-ce que Morgane est française ?
+ 	 나 : Non, Morgane n’est pas française non plus.
+[나 : 아니요, 모르간도 프랑스 사람이 아니에요.;나 : 네, 모르간은 프랑스 사람이 아니에요.;나 : 아니요, 모르간은 프랑스 사람이 아니에요.;나 : 아니요, 모르간은 프랑스 사람이에요.]<br>
+17.	  Madame Kim , vous êtes peintre ?
+[김 선생님은 화가예요 ?;김 선생님, 당신은 화가예요 ?;김 교수님, 당신은 화가예요 ?;김 선생님, 너는 화가예요 ?]<br><br>
+Choisissez  l’écriture correcte lors de la prononciation.<br>
+18.	괜찮아요. se prononce  \(          ?            \) -> liaison
+[괜차나요;괜찬아요;괜찬나요;괜차나요]<br>
+19.	 한국어 se prononce  \(            ?           \) -> liaison
+[한구거;한국거;하구거;안구거]<br>
+20.	 꽃 se prononce  \( ? \)  ->  consonne finale
+[꼳;꼿;꽅;꽃]<br>

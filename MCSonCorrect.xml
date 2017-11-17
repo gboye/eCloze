@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="category">
+<category>
+<text>
+TEMP/Texte/ParCro/Korean/MC
+</text>
+</category>
+</question><question type="cloze">
+<name><text>Son correct N° 01</text></name>
+<questiontext><text><![CDATA[Ecoutez et choisissez le son correct.<br/>﻿1{1:MC:=ㅓ~ㅏ~ㅗ~ㅝ}.
+<br>2{1:MC:=ㅔ~ㅐ~ㅙ~ㅚ}.
+<br>3{1:MC:=ㅟ~ㅠ~ㅘ~ㅢ}.
+<br>4{1:MC:=ㅖ~ㅔ~ㅒ~ㅣ}.
+<br>5{1:MC:=ㅡ~ㅗ~ㅓ~ㅣ}.
+<br>6{1:MC:=하~아~마~카}.
+<br>7{1:MC:=나~라~아~마}.
+<br>8{1:MC:=마~바~나~다}.
+<br>9{1:MC:=차~자~짜}.
+<br>10{1:MC:=따~타~다}.
+<br>11{1:MC:=가~카~까}.
+<br>12{1:MC:=파~바~빠}.
+<br>13{1:MC:=사~싸}.
+<br>14{1:MC:=요리사~교수님~선생님~회사원}.
+<br>15{1:MC:=프랑스~캐나다~벨기에~피에르}.<br><br/>]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+<penalty>0.3333333</penalty>
+</question>
+</quiz>

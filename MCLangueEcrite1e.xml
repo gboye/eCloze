@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="category">
+<category>
+<text>
+TEMP/Texte/ParCro/Korean/MC
+</text>
+</category>
+</question><question type="cloze">
+<name><text>Langue écrite 1 N° 01</text></name>
+<questiontext><text><![CDATA[<br/>﻿Choisissez le mot, la particule ou la phrase pour compléter la phrase.<br>
+<br>1.	저(       )      대학원생이에요.
+<br>{1:MC:=는~은~씨~선생님}<br>
+<br>2.	모르간(      )      가수(                ).
+<br>{1:MC:=은,  예요~은,  이에요~는,  예요~는,  이에요}<br>
+<br>3.	Mina est chinoise. = 미나는 (                   )예요/이에요.
+<br>{1:MC:=중국 사람~중국어~일본어~일본 사람}<br>   
+<br>4.	1-2-3-(     )-5
+<br>{1:MC:=사~삼~이~오}<br>
+<br>5.	 6-(     )-8-9-10
+<br>{1:MC:=칠~팔~육~십}<br>
+<br>6.	De rien. = (                  )
+<br>{1:MC:=천만에요.~괜찮아요.~례합니다.감사합니다.}<br>    
+<br>7.	 찬호는 (cuisinier)이에요/예요.
+<br>{1:MC:=요리사~기자~배우~가수}<br>    
+<br>8.	가 : (            )이 뭐예요 ?          
+<br>  	나 : 마농이에요.
+<br>{1:MC:=이름~전공~이 분~이 사람}<br>
+<br>9.	가 : (                )  뭐예요 ?             
+<br>	나 : 사과예요.
+<br>{1:MC:=이게~이 분이~이 사람이~전공}<br> 
+<br>10.	 3e année {1:SAC:=scolaire} = (                    )
+<br>{1:MC:=삼 학년~	사 학년~삼 과~삼 분} <br>
+<br>11.	  Anglais {1:SAC:=langue} = (                         )
+<br>{1:MC:=영어~영국~영국사람~독일사람} <br>
+<br>12.	  Australien {1:SAC:=nationalité} = (                        )
+<br>{1:MC:=호주 사람~미국 사람~독일어~독일} <br>
+<br>13.	  Je ne suis pas américaine. = 미국 사람(                                 ).  
+<br>{1:MC:=이 아니에요.~이에요.~예요.~	도 아니에요.} <br> 
+<br>14.	  Phrase déclarative                           Phrase interrogative
+<br>		한국 사람이에요.          ->            (                   ?                  ) 
+<br>{1:MC:=한국 사람이에요 ?~	이에요 한국 사람 ?~	사람이에요 한국 ?~사람 한국이에요 ?} <br>
+<br>15.	  C’est une photo. = (                              ).
+<br>{1:MC:=사진이에요.~개예요.~의자예요.~가방이에요.} <br>
+<br>16.	 찬호(       )은/는 한국 사람이에요.
+<br>{1:MC:=씨~도~분~이} <br>          
+<br>17.	 가 : 피에르는 화가예요 ?  
+<br> 	 나 : (             ), 성악가예요.
+<br>{1:MC:=아니요~네~아,그래요 ?~전공은} <br>
+<br>18.	  가 : 이 분은 피에르 씨예요.
+<br>	  나 :  (               ?                ).    
+<br>{1:MC:=반갑습니다.~감사합니다.~죄송합니다.실례합니다.} <br>
+<br>19.	  가 :  안녕하세요 ?  저는 한국 사람이에요.
+<br>   	  나 : 안녕하세요 ?   저(     )   한국 사람이에요.
+<br>{1:MC:=도~는~은~씨}<br>
+<br>20.	   마리는 (                )예요/이에요.
+<br>{1:MC:=선생님~가방~프랑스 역사~프랑스어}<br>        <br><br/>]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+<penalty>0.3333333</penalty>
+</question>
+</quiz>

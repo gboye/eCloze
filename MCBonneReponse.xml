@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="category">
+<category>
+<text>
+TEMP/Texte/ParCro/Korean/MC
+</text>
+</category>
+</question><question type="cloze">
+<name><text>Bonne réponse N° 01</text></name>
+<questiontext><text><![CDATA[Ecoutez la phrase et choisissez la bonne réponse.<br/>﻿1. {1:MC:=저는 민정이에요.~아, 그래요 ?~반갑습니다.저는 대학생이에요.}.
+<br>2. {1:MC:=안녕하세요 ?~감사합니다.~죄송합니다.천만에요.}.
+<br>3. {1:MC:=마리예요. 친구예요.~이 학년이에요.~전공은 한국어예요.~아니요, 저는 중국 사람이 아니에요.}.
+<br>4. {1:MC:=네, 대학생이에요.~네, 저는 한국 사람이에요.~아니요, 저는 스페인 사람이 아니에요.~반갑습니다}.
+<br>5. {1:MC:=네, 저도 요리사예요.~저는 김민정이에요.~아니요, 저는 프랑스 사람이에요.~네, 저는 대학생이에요.}.
+<br>6. {1:MC:=휴대전화예요.~성악가예요.~한국 배우예요.~조수미 씨예요.}.
+<br>7. {1:MC:=프랑스 역사예요.~한국 사람이에요.~대학원생이에요.~선생님이에요.}.<br><br/>]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+<penalty>0.3333333</penalty>
+</question>
+</quiz>

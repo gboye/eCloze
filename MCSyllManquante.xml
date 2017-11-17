@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="category">
+<category>
+<text>
+TEMP/Texte/ParCro/Korean/MC
+</text>
+</category>
+</question><question type="cloze">
+<name><text>Syllabe manquante N° 01</text></name>
+<questiontext><text><![CDATA[Ecoutez et complétez la ou les syllabes manquantes entre parenthèses.<br/>﻿1.기{1:MC:=자~사~바~수}.
+<br>2.{1:MC:=과~화~배~궈}일.
+<br>3.{1:MC:=수영~선생~교수~도서}장.
+<br>4.공{1:MC:=원~운~인~언}.
+<br>5.{1:MC:=화~와~워~훠}가.
+<br>6.{1:MC:=나~사~놔~다}무.
+<br>7.{1:MC:=배~베~봬~뵈}우.
+<br>8.선{1:MC:=생~샌~센~셍}님.
+<br>9.프랑스{1:MC:=사람~사랑~어~친구}.
+<br><br/>]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+<penalty>0.3333333</penalty>
+</question>
+</quiz>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="category">
+<category>
+<text>
+TEMP/Texte/ParCro/Korean/MC
+</text>
+</category>
+</question><question type="cloze">
+<name><text>Langue écrite 2 N° 01</text></name>
+<questiontext><text><![CDATA[<br/>Choisissez la traduction correcte.<br>
+<br>1.	도서관
+<br>{1:MC:=bibliothèque~parc~bureau de poste~piscine}<br>
+<br>2.	 기자
+<br>{1:MC:=journaliste~peintre~acteur / actrice~romancier(ère)}<br>
+<br>3.	 과일
+<br>{1:MC:=Fruits~Leçon~Réveil~Arbre}<br>
+<br>4.	꽃
+<br>{1:MC:=fleur~voiture~pain~livre~chien}<br> 
+<br>5.	 뭐
+<br>{1:MC:=Quoi/que~Nom/prénom~Je/moi~Exemple}<br>
+<br>6.	 회사원
+<br>{1:MC:=Employé(e) d’une compagnie~Metteur en scène~Romancier(ère)~Chanteur(euse) d’opéra}<br>
+<br>7.	친구
+<br>{1:MC:=Amie~Qui~Personne~Dialogue}<br>
+<br>8.	 의사
+<br>{1:MC:=Médecin~Chaise~Bureau/table~Photo}<br>
+<br>9.	 처음 뵙겠습니다.
+<br>{1:MC:=Enchanté(é) de vous rencontrer.~Ah, vraiment ?~Cela fait plaisir de vous revoir.~Bonjour.}<br>
+<br>10.	 Etudiant(e) en master
+<br>{1:MC:=대학원생~대학생~사람~선생님}<br>
+<br>11.	  Histoire
+<br>{1:MC:=역사~읽기~전공~대화}<br>
+<br>12.	 Oui
+<br>{1:MC:=네~아니요~도~씨}<br>
+<br>13.	 Allemagne
+<br>{1:MC:=독일~영국~미국~호주}<br>
+<br>14.	  Japonais(langue)
+<br>{1:MC:=일본어~중국어~일본 사람~가봉 사람}<br>
+<br>15.	 Madame Kim Mi-jin est actrice.
+<br>{1:MC:=김미진 선생님은 배우예요.~김미진은 선생님이에요.~김미진 씨는 선생님이에요.~김미진 씨는 배우 선생님이에요.}<br>
+<br>16.	 가 : Pierre n’est pas français. Est-ce que Morgane est française ?
+<br> 	 나 : Non, Morgane n’est pas française non plus.
+<br>{1:MC:=나 : 아니요, 모르간도 프랑스 사람이 아니에요.~나 : 네, 모르간은 프랑스 사람이 아니에요.~나 : 아니요, 모르간은 프랑스 사람이 아니에요.~나 : 아니요, 모르간은 프랑스 사람이에요.}<br>
+<br>17.	  Madame Kim , vous êtes peintre ?
+<br>{1:MC:=김 선생님은 화가예요 ?~김 선생님, 당신은 화가예요 ?~김 교수님, 당신은 화가예요 ?~김 선생님, 너는 화가예요 ?}<br><br>
+<br>Choisissez  l’écriture correcte lors de la prononciation.<br>
+<br>18.	괜찮아요. se prononce  (          ?            ) -> liaison
+<br>{1:MC:=괜차나요~괜찬아요~괜찬나요~괜차나요}<br>
+<br>19.	 한국어 se prononce  (            ?           ) -> liaison
+<br>{1:MC:=한구거~한국거~하구거~안구거}<br>
+<br>20.	 꽃 se prononce  ( ? )  ->  consonne finale
+<br>{1:MC:=꼳~꼿~꽅~꽃}<br><br><br/>]]></text></questiontext>
+<generalfeedback><text>Bien reçu.</text></generalfeedback>
+<shuffleanswers>1</shuffleanswers>
+<penalty>0.3333333</penalty>
+</question>
+</quiz>
