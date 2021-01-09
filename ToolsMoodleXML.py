@@ -1,23 +1,30 @@
 # -*- coding: utf8 -*-
 
 import re
-import random
+import random, math
 
 choixMultiples=["MC","MCV","MCH"]
 choixSimples=["SA","SAC","SACV"]
+choixNumeriques=["NM","NMS"]+["NM%d"%i for i in range(4)]
 maxChoix=10
 penalite="0.3333333"
+erreur=0
 
 debug=False
 
 def makeChamps(chaine,champs):
     chunks=re.findall(r"(#[^#]+#|[^#]*)",chaine)
     result=""
+    if debug: print chunks
     for chunk in chunks:
-        sChamp=re.match("#(\d+)#",chunk)
+        sChamp=re.match("#(\d+)(;\d+)?#",chunk)
         if sChamp:
             nChamp=int(sChamp.group(1))-1
-            result+=champs[nChamp].decode("utf8")
+            if sChamp.group(2):
+                coef=sChamp.group(2)
+            else:
+                coef=""
+            result+=champs[nChamp].decode("utf8")+coef
         else:
             result+=chunk
     return result
@@ -65,6 +72,7 @@ class ClozeSerie:
 
     L'initialisation demande la structure des boucles et de la conclusion
     La structure est une liste de TXT,SA,SAC,MC,MCV,MCH
+    modif pour ajouter NM
     '''
     def __init__(self,sBoucle,sConclusion):
         self.sBoucle=sBoucle
@@ -121,12 +129,12 @@ class ClozeSerie:
       result=[]
       for nExercice,exercice in enumerate(self.exercices):
         for nElement,element in enumerate(exercice.boucle):
-#          print nElement,element
+          if debug: print nElement,element
           for nChamp, champ in enumerate(element):
-#            print nChamp, champ
+            if debug: print nChamp, champ
             if nChamp < len(self.sBoucle):
               if self.sBoucle[nChamp] in choixMultiples:
-                self.exercices[nExercice].boucle[nElement][nChamp]="{1:%s:=%s}"%(self.sBoucle[nChamp],self.getChoix(nChamp,element[nChamp]))
+                self.exercices[nExercice].boucle[nElement][nChamp]="{%d:%s:=%s}"%(1,self.sBoucle[nChamp],self.getChoix(nChamp,element[nChamp]))
               elif self.sBoucle[nChamp] in choixSimples:
                 choixSimple=self.sBoucle[nChamp]
                 if self.sBoucle[nChamp]=="SACV":
@@ -135,18 +143,41 @@ class ClozeSerie:
                         choixSimple="SAC"
                     else:
                         choixSimple="SA"
-                self.exercices[nExercice].boucle[nElement][nChamp]="{1:%s:=%s}"%(choixSimple,element[nChamp])
+                self.exercices[nExercice].boucle[nElement][nChamp]="{%d:%s:=%s}"%(1,choixSimple,element[nChamp])
+              elif self.sBoucle[nChamp] in choixNumeriques:
+                choixNumerique=self.sBoucle[nChamp]
+                numElement=element[nChamp]
+#                print choixNumerique,numElement
+                m=re.match(ur"NM([S0123])",choixNumerique)
+                if m:
+                  choixNumSpec=m.group(1)
+                  if choixNumSpec=="S":
+                    sErreur=10**math.floor(math.log(float(element[nChamp]))+math.log(erreur)-1)
+                  else:
+                    sErreur=10**(-int(choixNumSpec))
+                else:
+                  sErreur=erreur
+                self.exercices[nExercice].boucle[nElement][nChamp]="{%d:%s:=%s:%f}"%(1,"NM",element[nChamp],sErreur)
             else:
               if debug: print "Champ vide",nChamp
         for nElement, element in enumerate(exercice.conclusion):
+          conclusionCoefs=consigne.conclusionCoefs
           if self.sConclusion[nElement] in choixMultiples:
-            self.exercices[nExercice].conclusion[nElement]="{1:%s:=%s}"%(self.sConclusion[nElement],self.getChoix(nElement,element,"conclusion"))
+            self.exercices[nExercice].conclusion[nElement]="{%d:%s:=%s}"%(conclusionCoefs[nElement],self.sConclusion[nElement],self.getChoix(nElement,element,"conclusion"))
           elif self.sConclusion[nElement] in choixSimples:
-            self.exercices[nExercice].conclusion[nElement]="{1:%s:=%s}"%(self.sConclusion[nElement],element)
+            self.exercices[nExercice].conclusion[nElement]="{%d:%s:=%s}"%(conclusionCoefs[nElement],self.sConclusion[nElement],element)
+          elif self.sConclusion[nElement] in choixNumeriques:
+            self.exercices[nExercice].conclusion[nElement]="{%d:%s:=%s:%f}"%(conclusionCoefs[nElement],"NM",element,erreur)
         exerciceCloze=[]
         for element in consigne.getConsigne(exercice):
           if element!="":
-            exerciceCloze.append(element)
+            newElement=element
+            changeCoef=re.findall(ur"{(\d+):(.*?)};(\d+)",element)
+            for triplet in changeCoef:
+                if debug: print triplet
+                coefOrig,rep,coef=triplet
+                newElement=newElement.replace(ur"{%s:%s};%s"%(coefOrig,rep,coef),ur"{%s:%s}"%(coef,rep))
+            exerciceCloze.append(newElement)
         exerciceSerie=ClozeExercice(exercice.titre,"<br>\n".join(exerciceCloze))
         result.append(exerciceSerie)
       return result

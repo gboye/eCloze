@@ -1,9 +1,9 @@
 # -*- coding: utf8 -*-
 
-import re
-import random, warnings
+import re, warnings
+import random as rd
 
-choixMultiples=["MC","MCV","MCH"]
+choixMultiples=["MC","MCV","MCH","MCS"]
 choixSimples=["SA","SAC","SACV"]
 maxChoix=10
 penalite="0.3333333"
@@ -18,6 +18,9 @@ def makeChamps(chaine,champs):
         if sChamp:
             nChamp=int(sChamp.group(1))-1
             result+=champs[nChamp].decode("utf8")
+        elif "#N#" in chunk:
+            nAlea="%04d"%rd.randint(1,10000)
+            result+=chunk.replace("#N#",nAlea)
         else:
             result+=chunk
     return result
@@ -224,7 +227,7 @@ class ClozeSerie:
     Conteneur pour les éléments d'une série d'exercices Cloze
 
     L'initialisation demande la structure des boucles et de la conclusion
-    La structure est une liste de TXT,SA,SAC,MC,MCV,MCH
+    La structure est une liste de TXT,SA,SAC,MC,MCV,MCH,MCS
     '''
     def __init__(self,sBoucle,sConclusion):
         self.sBoucle=sBoucle
