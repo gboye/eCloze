@@ -277,7 +277,7 @@ class ClozeSerie:
       else:
         print "Problème avec la réponse %s" % bonneReponse
       nChoix=min(maxChoix,len(choixPossibles))
-      choix=random.sample(choixPossibles,nChoix)
+      choix=rd.sample(choixPossibles,nChoix)
       return bonneReponse+"~"+"~".join(choix)
 
     def makeSerie(self,consigne):
